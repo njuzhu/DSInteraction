@@ -7,7 +7,7 @@
 
 	<package name="struts2" extends="struts-default" namespace="/dsinteraction">
 
-		<action name="register" class="UserAction">
+		<action name="register" class="UserAction" method="register">
 			<result name="success">/view/welcome.jsp</result>
             <result name="input">/view/register.jsp</result>
 		</action>

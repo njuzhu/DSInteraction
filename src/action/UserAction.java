@@ -8,8 +8,7 @@ public class UserAction extends BaseAction {
 	private UserService userService;
 	private User user; 
 	
-  
-    public String execute() throws Exception{
+    public String register(){
     	String message="";
     	
 		if((message=userService.registerUser(user))!= null){
@@ -19,7 +18,6 @@ public class UserAction extends BaseAction {
 			this.request().getSession().setAttribute("name",user.getName());
 			return SUCCESS;
 		}
-		
     }
 
 	public void setUserService(UserService userService) {
