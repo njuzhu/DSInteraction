@@ -6,8 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css" />
+<link rel="stylesheet" type="text/css" href="../css/play.css">
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/play.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
 <title>播放内容页面</title>
 </head>
@@ -26,5 +29,7 @@
                     </div>
             </div>
         </div>
+        
+        <button id="startPlay" class="btn btn-default" type="button" style="height:34px"><span class="glyphicon">开始播放</span></button>
 </body>
 </html>

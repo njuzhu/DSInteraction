@@ -1,0 +1,53 @@
+html,body {
+        height: 100%;
+}
+#left{
+        position: absolute;
+        width: 250px;
+        height:100%;
+        background-color: black;
+        overflow: hidden;
+}
+#right{
+        margin-left: 250px;
+        height: 100%;
+        background-color: black;
+        text-align: center;
+}
+#left2{
+        text-align: center;
+        height: 100%;
+        color: white;
+}
+
+#left2 .rank{
+        position: absolute;
+        bottom: 80px;
+}
+
+#left2 h1{
+        font-size: 24px;
+        margin-bottom: 20px;
+}
+
+ul{ 
+        color: white; 
+        list-style:none; 
+        padding:0px; 
+        margin:0px; 
+        width:240px;
+        height:50px; 
+        line-height:50px; 
+        border:1px solid #FF0000;
+        border-top:0px; 
+        font-size:20px;
+}
+ul li{ 
+        display:block; 
+        width:33%; 
+        float:left;
+}
+.th{ 
+        font-weight:bold; 
+        border-top:1px solid #FF0000; 
+}
