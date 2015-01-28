@@ -1,6 +1,61 @@
-html,body {
-        height: 100%;
+.btn-green {
+  		color: #fff;
+  		background-color: #1abc9c;
 }
+.btn-green:hover,
+.btn-green.hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active,
+.open > .dropdown-toggle.btn-green {
+  		color: #fff;
+  		background-color: #48c9b0;
+  		border-color: #48c9b0;
+  }
+  .caret {
+  		display: inline-block;
+  		width: 0;
+  		height: 0;
+  		margin-left: 5px;
+  		vertical-align: middle;
+  		border-top: 8px solid;
+  		border-right: 6px solid transparent;
+  		border-left: 6px solid transparent;
+  		-webkit-transition: border-color .25s, color .25s;
+        transition: border-color .25s, color .25s;
+  }
+  .btn-group>.btn+.dropdown-toggle{
+  		height: 34px;
+  }
+  .dropdown-toggle .caret {
+  		margin-left: 8px;
+  }
+  .btn-group{
+  		margin-right: 130px;
+  }
+
+  legend{
+  		color: #777;
+  		font-size: 18px;
+  }
+fieldset{
+  		padding-bottom: 25px;
+  		padding-left: 30px;
+  		padding-right: 30px;
+}
+  
+.wrap .glyphicon{
+  		font-size: 17px;
+}
+#search_btn{
+  		height: 34px;
+}
+
+#startPlay{
+  		float: right;
+  		height: 34px;
+}
+  
 #left{
         position: absolute;
         width: 250px;
@@ -30,7 +85,7 @@ html,body {
         margin-bottom: 20px;
 }
 
-ul{ 
+#left2 ul{ 
         color: white; 
         list-style:none; 
         padding:0px; 
@@ -42,12 +97,12 @@ ul{
         border-top:0px; 
         font-size:20px;
 }
-ul li{ 
+#left2 ul li{ 
         display:block; 
         width:33%; 
         float:left;
 }
-.th{ 
+#left2 .th{ 
         font-weight:bold; 
         border-top:1px solid #FF0000; 
 }

@@ -12,7 +12,15 @@
 
 	<!-- dao -->
 	<bean id="UserDao" class="dao.impl.UserDaoImpl">		
+	</bean>
+	<bean id="CinemaDao" class="dao.impl.CinemaDaoImpl">		
 	</bean>	
+	<bean id="CinemaHallDao" class="dao.impl.CinemaHallDaoImpl">		
+	</bean>	
+	<bean id="FilmScheduleDao" class="dao.impl.FilmScheduleDaoImpl">		
+	</bean>	
+	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">		
+	</bean>		
 	
 	<!-- service -->
 	<bean id="UserService" class="service.impl.UserServiceImpl">

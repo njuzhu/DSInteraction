@@ -1,4 +1,14 @@
 	window.onload = function(){
+		$(".dropdown-menu li").unbind().bind('click',function(){
+            var selected = $(this).children().text();
+            var btn = $(this).parent().prev().prev();
+            btn.text(selected);
+        });
+
+        $("#searchPlayList").unbind().bind('click',function(){
+            $("#playList").toggle();
+        });
+		
 		$("#startPlay").unbind().bind('click',function(){
 			fullscreen();
 			$("body").empty();
