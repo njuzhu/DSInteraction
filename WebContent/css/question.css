@@ -1,0 +1,36 @@
+.question{
+    font-family: "microsoft yahei";
+}
+.question .box{
+	border: 1px solid #c0c0c0;
+	padding: 15px;
+	margin: 0 10px;
+}
+.question .box .title{
+	border-bottom: 1px solid #c0c0c0;
+	padding-left: 15px;
+}
+.question .box .title span.bold{
+	font-weight: bold;
+	margin-right: 10px;
+}
+.question .box .answer{
+	padding-top: 15px;
+	padding-left: 15px;	
+    
+}
+.question .box .answer p span.choice{
+	margin-right: 10px;
+	font-weight: bold;
+}
+.question .box .answer .isRight{
+	float: right;
+}
+.question .box .answer .isRight p{
+	margin: 0;
+}
+.question .edit{
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}

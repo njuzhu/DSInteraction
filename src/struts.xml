@@ -5,13 +5,23 @@
 
 <struts>
 
-	<package name="struts2" extends="struts-default" namespace="/dsinteraction">
+	<package name="struts2" extends="struts-default" namespace="/view">
 
 		<action name="register" class="UserAction" method="register">
 			<result name="success">/view/welcome.jsp</result>
             <result name="input">/view/register.jsp</result>
 		</action>
+		<action name="loginPro" class="LoginAction">
+		    <result name="exist">/view/RewardListView.jsp</result>
+		    <result name="error">/view/login.jsp?error=1</result>
+		</action>
+		<action name="questionList" class="QuestionListAction">
+		    <result name="success">/view/QuestionListView.jsp</result>
+		</action>
+		<action name="showQuestionDeail" class="QuestionDetailAction">
+		    <result name="success">/view/QuestionDetailView.jsp</result>
+		</action>
 
 	</package>
-		
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 </struts>
