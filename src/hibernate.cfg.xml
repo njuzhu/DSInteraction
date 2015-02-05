@@ -15,6 +15,8 @@
         <property name="hbm2ddl.auto">update</property>
        
         <mapping class="model.User"/> 
-		
+        <mapping class="model.Administrator"/> 
+		<mapping class="model.Question"/> 
+		<mapping class="model.Answer"/> 
 </session-factory>
 </hibernate-configuration>

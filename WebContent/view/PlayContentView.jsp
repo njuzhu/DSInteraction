@@ -6,8 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/play.css">
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/play.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
 <title>播放内容页面</title>
 </head>
@@ -17,14 +19,80 @@
             <ol class="breadcrumb">
                 <li class="active">播放</li>
             </ol>
-            <div class="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" style="height:34px"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
+        </div>
+        
+        <div class="wrap">
+            <div class="list">
+                <fieldset>
+                    <legend>搜索栏</legend>
+                    <div class="btn-group">
+                         <button class="btn btn-green">选择电影院</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">大华电影院</a>
+                            </li>
+                            <li>
+                                <a href="#">卢米埃电影院</a>
+                            </li>
+                        </ul>
                     </div>
+                    <div class="btn-group">
+                         <button class="btn btn-green">选择电影厅</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">全景声厅</a>
+                            </li>
+                            <li>
+                                <a href="#">一厅</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                         <button class="btn btn-green">选择时间段</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">8:00-10:00</a>
+                            </li>
+                            <li>
+                                <a href="#">2:00-4:00</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button id="search_btn" class="btn btn-green" type="button"><span id="searchPlayList" class="glyphicon glyphicon-search">搜索</span></button>
+                </fieldset>
+            </div>
+            <div id="playList" class="list" style="display:none;">
+                <fieldset>
+                    <legend>播放单</legend>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>类型</th>
+                                <th>关键字</th>
+                                <th>时长</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>选择题</td>
+                                <td>宝马</td>
+                                <td>50秒</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>选择题</td>
+                                <td>宝马</td>
+                                <td>45秒</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button id="startPlay" class="btn btn-green" type="button"><span class="glyphicon glyphicon-play">开始播放</span></button>
+                    </div>
+                </fieldset>
             </div>
         </div>
-</body>
+	</body>
 </html>
