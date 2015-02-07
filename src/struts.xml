@@ -5,7 +5,7 @@
 
 <struts>
 
-	<package name="struts2" extends="struts-default" namespace="/dsinteraction">
+	<package name="struts2" extends="struts-default" namespace="/view">
 
 		<action name="register" class="UserAction" method="register">
 			<result name="success">/view/welcome.jsp</result>
@@ -26,7 +26,7 @@
 		</action>
 
 		<action name="loginPro" class="LoginAction">
-		    <result name="exist">/view/RewardListView.jsp</result>
+			<result name="exist">/view/RewardListView.jsp</result>
 		    <result name="error">/view/login.jsp?error=1</result>
 		</action>
 		<action name="questionList" class="QuestionListAction">

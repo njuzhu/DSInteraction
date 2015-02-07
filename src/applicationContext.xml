@@ -25,7 +25,7 @@
 	</bean>	
 	<bean id="FilmScheduleDao" class="dao.impl.FilmScheduleDaoImpl">		
 	</bean>	
-	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">		
+	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">
 	</bean>
 	<bean id="RaceDao" class="dao.impl.RaceDaoImpl">		
 	</bean>			

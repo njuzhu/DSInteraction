@@ -46,7 +46,7 @@ public class PlayContentAction extends BaseAction{
 	//查找所有电影院的名称
 	public String searchAllCinemas(){
 		List<Cinema> cinemas = cinemaService.searchAllCinemas();
-		List<String> cinemaNames = new ArrayList<String>();
+		List<String> cinemaNames = new ArrayList<String>();	
 		
 		for (Cinema cinema : cinemas) {
 			String cinemaName = cinema.getName();

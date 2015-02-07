@@ -22,11 +22,11 @@
                         </ul> 
                     </li> 
                     <li>
-                    	<a href="<%=request.getContextPath()+"/dsinteraction/findCinemas"%>"  class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a>
+                    	<a href="<%=request.getContextPath()+"/view/findCinemas"%>"  class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a>
                     </li> 
                 </ul> 
                 <div class="login">
                     <a href="login.jsp">退出</a>
                 </div>
             </div>
-
+</div>

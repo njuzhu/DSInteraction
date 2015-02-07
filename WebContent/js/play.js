@@ -32,7 +32,7 @@
 			var cinema_btn = $("#cinema_btn");
 			var cname = encodeURIComponent(cinema_selected);
             
-			$.get("/DSInteraction/dsinteraction/findHalls",{cinemaName:cname},function(data){	
+			$.get("/DSInteraction/view/findHalls",{cinemaName:cname},function(data){	
 				$("#hall_ul").empty();
 				$.each(JSON.parse(data),function(i,item){					
 					$("#hall_ul").append("<li><a href='#'>" + item + "</a></li>");
@@ -54,7 +54,7 @@
 			var hall_btn = $("#hall_btn");
 			var hname = encodeURIComponent(hall_selected);
             
-			$.get("/DSInteraction/dsinteraction/findPeriods",{cinemaName:cname,hallName:hname},function(data){	
+			$.get("/DSInteraction/view/findPeriods",{cinemaName:cname,hallName:hname},function(data){	
 				$("#period_ul").empty();
 				$.each(JSON.parse(data),function(i,item){					
 					$("#period_ul").append("<li><a href='#'>" + item + "</a></li>");
@@ -91,7 +91,7 @@
 				var hname = encodeURIComponent($("#hall_btn").text());
 				var pname = encodeURIComponent($("#period_btn").text());
 	            
-				$.get("/DSInteraction/dsinteraction/findPlayList",{cinemaName:cname,hallName:hname,period:pname},function(data){
+				$.get("/DSInteraction/view/findPlayList",{cinemaName:cname,hallName:hname,period:pname},function(data){
 					$("#list_table").empty();
 					$.each(JSON.parse(data),function(i,item){
 						$("#list_table").append("<tr><td>" + item.number + "</td><td>" + item.type + "</td><td>" + item.keyword + "</td><td>" + item.duration + "</td></tr>");
