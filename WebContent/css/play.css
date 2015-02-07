@@ -1,3 +1,4 @@
+*{margin:0;padding:0;border:0;}
 .btn-green {
   		color: #fff;
   		background-color: #1abc9c;
@@ -11,8 +12,11 @@
   		color: #fff;
   		background-color: #48c9b0;
   		border-color: #48c9b0;
-  }
-  .caret {
+}
+#cinema_btn,#hall_btn,#period_btn{
+		width: 120px;	
+}
+.caret {
   		display: inline-block;
   		width: 0;
   		height: 0;
@@ -31,7 +35,7 @@
   		margin-left: 8px;
   }
   .btn-group{
-  		margin-right: 130px;
+  		margin-right: 100px;
   }
 
   legend{
@@ -105,4 +109,8 @@ fieldset{
 #left2 .th{ 
         font-weight:bold; 
         border-top:1px solid #FF0000; 
+}
+
+.warning{
+		color: red;
 }

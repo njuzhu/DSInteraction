@@ -21,7 +21,8 @@
                             <li><a href="CinemaListView.jsp">电影院管理</a></li> 
                         </ul> 
                     </li> 
-                    <li><a href="PlayContentView.jsp" class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a> 
+                    <li>
+                    	<a href="<%=request.getContextPath()+"/dsinteraction/findCinemas"%>"  class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a>
                     </li> 
                 </ul> 
                 <div class="login">

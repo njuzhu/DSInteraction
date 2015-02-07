@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cinema")
-public class Cinema {
+@Table(name="race")
+public class Race {
 	private int id;
 	private String name;
-	private String city;
-	private String address;
+	private String content;
+	private int duration;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,18 +30,18 @@ public class Cinema {
 		this.name = name;
 	}
 	
-	public String getCity() {
-		return city;
+	public String getContent() {
+		return content;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
-	public String getAddress() {
-		return address;
+	public int getDuration() {
+		return duration;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
-
+	
 }

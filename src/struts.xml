@@ -11,6 +11,19 @@
 			<result name="success">/view/welcome.jsp</result>
             <result name="input">/view/register.jsp</result>
 		</action>
+		
+		<action name="findCinemas" class="PlayContentAction" method="searchAllCinemas">
+			<result name="success">/view/PlayContentView.jsp</result>
+		</action>
+		
+		<action name="findHalls" class="PlayContentAction" method="searchAllCinemaHalls">
+		</action>
+		
+		<action name="findPeriods" class="PlayContentAction" method="searchAllFilmPeriods">
+		</action>
+		
+		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
+		</action>
 
 	</package>
 		

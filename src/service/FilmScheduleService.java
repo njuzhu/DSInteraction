@@ -2,12 +2,8 @@ package service;
 
 import java.util.List;
 
-import dao.FilmScheduleDao;
+import model.FilmSchedule;
 
 public interface FilmScheduleService {
-	public FilmScheduleDao getFilmScheduleDao();
-	
-	public void setFilmScheduleDao(FilmScheduleDao filmScheduleDao);
-	
-	public List<FilmScheduleDao> searchFilmSchedule(int cinemaHall_id);
+	public List<FilmSchedule> searchFilmSchedule(int cinemaHall_id);
 }

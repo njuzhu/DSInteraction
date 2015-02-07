@@ -20,7 +20,7 @@ public class FilmScheduleDaoImpl implements FilmScheduleDao{
 			SessionFactory sessionFactory = config.buildSessionFactory();
 			Session session = sessionFactory.openSession();
 
-			String hql = "from model.FilmSchedule as filmSchedule where filmSchedule.cinemaHall_id='" + cinemaHall_id + "'";
+			String hql = "from model.FilmSchedule as filmSchedule where filmSchedule.cinemaHall_id=" + cinemaHall_id;
 			Query query = session.createQuery(hql);
 			List list = query.list();
 

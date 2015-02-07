@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,41 +22,30 @@
             </ol>
         </div>
         
+        <%List<String> cinemaNames = (List<String>)session.getAttribute("cinemaNames"); %>
         <div class="wrap">
             <div class="list">
                 <fieldset>
                     <legend>搜索栏</legend>
                     <div class="btn-group">
-                         <button class="btn btn-green">选择电影院</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">大华电影院</a>
-                            </li>
-                            <li>
-                                <a href="#">卢米埃电影院</a>
-                            </li>
+                         <button id="cinema_btn" class="btn btn-green">选择电影院</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul id="cinema_ul" class="dropdown-menu">
+                        	<%if(cinemaNames != null){
+                        		for(int i = 0; i <cinemaNames.size(); i++){ %>
+                        		<li>
+	                                <a href="#"><%=cinemaNames.get(i) %></a>
+	                            </li>
+                        	<%}} %>
                         </ul>
                     </div>
                     <div class="btn-group">
-                         <button class="btn btn-green">选择电影厅</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">全景声厅</a>
-                            </li>
-                            <li>
-                                <a href="#">一厅</a>
-                            </li>
+                         <button id="hall_btn" class="btn btn-green">选择电影厅</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul id="hall_ul" class="dropdown-menu">
                         </ul>
                     </div>
                     <div class="btn-group">
-                         <button class="btn btn-green">选择时间段</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">8:00-10:00</a>
-                            </li>
-                            <li>
-                                <a href="#">2:00-4:00</a>
-                            </li>
+                         <button id="period_btn" class="btn btn-green">选择今日场次</button> <button data-toggle="dropdown" class="btn btn-green dropdown-toggle"><span class="caret"></span></button>
+                        <ul id="period_ul" class="dropdown-menu">
                         </ul>
                     </div>
                     <button id="search_btn" class="btn btn-green" type="button"><span id="searchPlayList" class="glyphicon glyphicon-search">搜索</span></button>
@@ -73,8 +63,8 @@
                                 <th>时长</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="list_table">
+                            <!-- <tr>
                                 <td>1</td>
                                 <td>选择题</td>
                                 <td>宝马</td>
@@ -85,7 +75,7 @@
                                 <td>选择题</td>
                                 <td>宝马</td>
                                 <td>45秒</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                     <div>
@@ -94,5 +84,8 @@
                 </fieldset>
             </div>
         </div>
+        
+        
+        
 	</body>
 </html>

@@ -1,13 +1,6 @@
 	window.onload = function(){
-		$(".dropdown-menu li").unbind().bind('click',function(){
-            var selected = $(this).children().text();
-            var btn = $(this).parent().prev().prev();
-            btn.text(selected);
-        });
-
-        $("#searchPlayList").unbind().bind('click',function(){
-            $("#playList").toggle();
-        });
+		cinema_fun();
+		searchList();        
 		
 		$("#startPlay").unbind().bind('click',function(){
 			fullscreen();
@@ -28,9 +21,90 @@
 	    	$("#raceVideo").unbind("onended").bind('ended',function(){
 				exitFullscreen();
 			});
-		});			
+		});
+		
+	};
+	
+	//选择电影院
+	function cinema_fun(){
+		$("#cinema_ul li").unbind().bind('click',function(){
+			var cinema_selected = $(this).children().text();
+			var cinema_btn = $("#cinema_btn");
+			var cname = encodeURIComponent(cinema_selected);
+            
+			$.get("/DSInteraction/dsinteraction/findHalls",{cinemaName:cname},function(data){	
+				$("#hall_ul").empty();
+				$.each(JSON.parse(data),function(i,item){					
+					$("#hall_ul").append("<li><a href='#'>" + item + "</a></li>");
+				});
+				
+				cinema_btn.text(cinema_selected);				
+				hall_fun();				
+			});
+			
+		});
+	}
+	
+	//选择电影厅
+	function hall_fun(){
+		$("#hall_ul li").unbind().bind('click',function(){
+			
+			var cname = encodeURIComponent($("#cinema_btn").text());
+			var hall_selected = $(this).children().text();
+			var hall_btn = $("#hall_btn");
+			var hname = encodeURIComponent(hall_selected);
+            
+			$.get("/DSInteraction/dsinteraction/findPeriods",{cinemaName:cname,hallName:hname},function(data){	
+				$("#period_ul").empty();
+				$.each(JSON.parse(data),function(i,item){					
+					$("#period_ul").append("<li><a href='#'>" + item + "</a></li>");
+				});
+				
+				hall_btn.text(hall_selected);
+				period_fun();
+			});
+		});
 	};
 
+	//选择电影场次
+	function period_fun(){
+		$("#period_ul li").unbind().bind('click',function(){
+			$("#period_btn").text($(this).children().text());
+		});
+	};
+	
+	//搜索播放单
+	function searchList(){
+		$("#searchPlayList").unbind().bind('click',function(){
+			if($.trim($("#cinema_btn").text()) == $.trim("选择电影院")){
+				$("#cinema_btn").addClass("warning");
+			}else if($.trim($("#hall_btn").text()) == $.trim("选择电影厅")){
+				$("#hall_btn").addClass("warning");
+			}else if($.trim($("#period_btn").text()) == $.trim("选择今日场次")){
+				$("#period_btn").addClass("warning");
+			}else{
+				$("#cinema_btn").removeClass("warning");
+				$("#hall_btn").removeClass("warning");
+				$("#period_btn").removeClass("warning");
+				
+				var cname = encodeURIComponent($("#cinema_btn").text());
+				var hname = encodeURIComponent($("#hall_btn").text());
+				var pname = encodeURIComponent($("#period_btn").text());
+	            
+				$.get("/DSInteraction/dsinteraction/findPlayList",{cinemaName:cname,hallName:hname,period:pname},function(data){
+					$("#list_table").empty();
+					$.each(JSON.parse(data),function(i,item){
+						$("#list_table").append("<tr><td>" + item.number + "</td><td>" + item.type + "</td><td>" + item.keyword + "</td><td>" + item.duration + "</td></tr>");
+					});
+					$("#playList").show();
+				});
+					            
+			}
+			
+        });
+	}
+	
+	//绘制矩形和全屏播放
 	var angles = [];
 	var index = 0;
 
@@ -93,4 +167,4 @@
 	    }else{  
 	        //浏览器不支持全屏API或已被禁用  
 	    }  
-	}  
+	};

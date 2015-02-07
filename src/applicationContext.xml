@@ -20,12 +20,46 @@
 	<bean id="FilmScheduleDao" class="dao.impl.FilmScheduleDaoImpl">		
 	</bean>	
 	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">		
-	</bean>		
+	</bean>
+	<bean id="QuestionDao" class="dao.impl.QuestionDaoImpl">		
+	</bean>	
+	<bean id="RaceDao" class="dao.impl.RaceDaoImpl">		
+	</bean>			
 	
 	<!-- service -->
 	<bean id="UserService" class="service.impl.UserServiceImpl">
 		<property name="UserDao">
 			<ref bean="UserDao"/>
+		</property>
+	</bean>	
+	<bean id="CinemaService" class="service.impl.CinemaServiceImpl">
+		<property name="CinemaDao">
+			<ref bean="CinemaDao"/>
+		</property>
+	</bean>	
+	<bean id="CinemaHallService" class="service.impl.CinemaHallServiceImpl">
+		<property name="CinemaHallDao">
+			<ref bean="CinemaHallDao"/>
+		</property>
+	</bean>	
+	<bean id="FilmScheduleService" class="service.impl.FilmScheduleServiceImpl">
+		<property name="FilmScheduleDao">
+			<ref bean="FilmScheduleDao"/>
+		</property>
+	</bean>	
+	<bean id="PlayListService" class="service.impl.PlayListServiceImpl">
+		<property name="PlayListDao">
+			<ref bean="PlayListDao"/>
+		</property>
+	</bean>
+	<bean id="QuestionService" class="service.impl.QuestionServiceImpl">
+		<property name="QuestionDao">
+			<ref bean="QuestionDao"/>
+		</property>
+	</bean>
+	<bean id="RaceService" class="service.impl.RaceServiceImpl">
+		<property name="RaceDao">
+			<ref bean="RaceDao"/>
 		</property>
 	</bean>			
 	
@@ -34,6 +68,26 @@
 		<property name="UserService">
 			<ref bean="UserService"/>
 		</property>
-	</bean>	
+	</bean>
+	<bean id="PlayContentAction" class="action.PlayContentAction">
+		<property name="CinemaService">
+			<ref bean="CinemaService"/>
+		</property>
+		<property name="CinemaHallService">
+			<ref bean="CinemaHallService"/>
+		</property>
+		<property name="FilmScheduleService">
+			<ref bean="FilmScheduleService"/>
+		</property>
+		<property name="PlayListService">
+			<ref bean="PlayListService"/>
+		</property>
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>		
 	
 </beans>
