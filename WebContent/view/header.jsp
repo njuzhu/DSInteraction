@@ -10,7 +10,7 @@
                     </li> 
                     <li><a><span class="glyphicon glyphicon-question-sign"></span>题库</a> 
                         <ul> 
-                            <li><a href="QuestionListView.jsp">选择题</a></li> 
+                            <li><a href="<%=request.getContextPath()+"/view/questionList"%>">选择题</a></li>  
                             <li><a href="RacingListView.jsp">赛车视频</a></li> 
                         </ul> 
                     </li> 
@@ -29,4 +29,4 @@
                     <a href="login.jsp">退出</a>
                 </div>
             </div>
-        </div>
+

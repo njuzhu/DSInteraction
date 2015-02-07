@@ -25,6 +25,17 @@
 		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
 		</action>
 
+		<action name="loginPro" class="LoginAction">
+		    <result name="exist">/view/RewardListView.jsp</result>
+		    <result name="error">/view/login.jsp?error=1</result>
+		</action>
+		<action name="questionList" class="QuestionListAction">
+		    <result name="success">/view/QuestionListView.jsp</result>
+		</action>
+		<action name="showQuestionDeail" class="QuestionDetailAction">
+		    <result name="success">/view/QuestionDetailView.jsp</result>
+		</action>
+
 	</package>
-		
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 </struts>

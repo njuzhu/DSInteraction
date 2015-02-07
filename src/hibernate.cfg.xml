@@ -21,6 +21,8 @@
 		<mapping class="model.PlayList"/>
 		<mapping class="model.Question"/>
 		<mapping class="model.Race"/>
-		
+        <mapping class="model.Administrator"/> 
+		<mapping class="model.Answer"/> 
+
 </session-factory>
 </hibernate-configuration>

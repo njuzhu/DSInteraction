@@ -1,7 +1,11 @@
 package service;
 
+import java.util.List;
+
 import model.Question;
 
 public interface QuestionService {
-	public Question searchQuestion(int question_id);
+    public List<Question> getQuestionList();
+    public Question findQuestionById(int ques_id);
 }
+

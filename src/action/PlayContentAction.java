@@ -188,7 +188,7 @@ public class PlayContentAction extends BaseAction{
 		
 		for (int i = 0; i < ids.length; i++) {
 			int id = Integer.parseInt(ids[i]);				
-			Question question = questionService.searchQuestion(id);
+			Question question = questionService.findQuestionById(id);
 			String keyword = question.getKeyword();
 			int duration = question.getDuration();
 			String durationStr = formatDuration(duration);

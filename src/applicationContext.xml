@@ -12,6 +12,12 @@
 
 	<!-- dao -->
 	<bean id="UserDao" class="dao.impl.UserDaoImpl">		
+	</bean>	
+	<bean id="AdministratorDao" class="dao.impl.AdministratorDaoImpl">
+	</bean>
+	<bean id="QuestionDao" class="dao.impl.QuestionDaoImpl">
+	</bean>
+	<bean id="AnswerDao" class="dao.impl.AnswerDaoImpl">
 	</bean>
 	<bean id="CinemaDao" class="dao.impl.CinemaDaoImpl">		
 	</bean>	
@@ -21,15 +27,31 @@
 	</bean>	
 	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">		
 	</bean>
-	<bean id="QuestionDao" class="dao.impl.QuestionDaoImpl">		
-	</bean>	
 	<bean id="RaceDao" class="dao.impl.RaceDaoImpl">		
 	</bean>			
-	
+
 	<!-- service -->
 	<bean id="UserService" class="service.impl.UserServiceImpl">
 		<property name="UserDao">
 			<ref bean="UserDao"/>
+		</property>
+	</bean>	
+	<bean id="AdministratorService" class="service.impl.AdministratorServiceImpl">
+		<property name="AdministratorDao">
+			<ref bean="AdministratorDao"/>
+		</property>
+	</bean>		
+	<bean id="QuestionService" class="service.impl.QuestionServiceImpl">
+		<property name="QuestionDao">
+			<ref bean="QuestionDao"/>
+		</property>
+		<property name="AnswerDao">
+			<ref bean="AnswerDao"/>
+		</property>
+	</bean>	
+	<bean id="AnswerService" class="service.impl.AnswerServiceImpl">
+		<property name="AnswerDao">
+			<ref bean="AnswerDao"/>
 		</property>
 	</bean>	
 	<bean id="CinemaService" class="service.impl.CinemaServiceImpl">
@@ -52,16 +74,11 @@
 			<ref bean="PlayListDao"/>
 		</property>
 	</bean>
-	<bean id="QuestionService" class="service.impl.QuestionServiceImpl">
-		<property name="QuestionDao">
-			<ref bean="QuestionDao"/>
-		</property>
-	</bean>
 	<bean id="RaceService" class="service.impl.RaceServiceImpl">
 		<property name="RaceDao">
 			<ref bean="RaceDao"/>
 		</property>
-	</bean>			
+	</bean>		
 	
 	<!-- action -->
 	<bean id="UserAction" class="action.UserAction">
@@ -89,5 +106,22 @@
 			<ref bean="RaceService"/>
 		</property>
 	</bean>		
-	
+	<bean id="LoginAction" class="action.LoginAction">
+		<property name="AdministratorService">
+			<ref bean="AdministratorService"/>
+		</property>
+	</bean>	
+	<bean id="QuestionListAction" class="action.QuestionListAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+	</bean>
+	<bean id="QuestionDetailAction" class="action.QuestionDetailAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>
 </beans>
