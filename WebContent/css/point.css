@@ -83,6 +83,21 @@ legend{
 	padding-right: 50px;
 }
 
+.point #tip{
+	color:red;
+}
+
+.search_usr span{
+	height: 20px;
+	top: 2px;	
+}
+
+.no_usr{
+	text-align: center;
+	color: red;
+	font-size: 20px;
+}
+
 .btn-green {
   color: #fff;
   background-color: #1abc9c;

@@ -24,6 +24,13 @@
 		
 		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
 		</action>
+		
+		<action name="findUsers" class="PointAction" method="searchUsers">
+			<result name="success">/view/PointResultView.jsp</result>
+		</action>
+		
+		<action name="updatePoint" class="PointAction" method="updateUserPoint">
+		</action>
 
 		<action name="loginPro" class="LoginAction">
 			<result name="exist">/view/RewardListView.jsp</result>

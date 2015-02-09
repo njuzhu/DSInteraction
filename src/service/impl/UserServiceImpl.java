@@ -1,6 +1,7 @@
 package service.impl;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,24 @@ public class UserServiceImpl implements UserService{
 			
 			return message;
 		}
+	}
+	
+	@Override
+	public List<User> searchUsers(String keyword) {
+		List<User> users = userDao.find(keyword);
+		return users;
+	}
+	
+	@Override
+	public boolean updateUserPoint(int usr_id,int new_point) {
+		boolean isUpdated = userDao.updateUserPoint(usr_id, new_point);
+		
+		if(isUpdated){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 	
 }

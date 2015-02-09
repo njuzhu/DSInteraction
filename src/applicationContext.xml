@@ -105,7 +105,12 @@
 		<property name="RaceService">
 			<ref bean="RaceService"/>
 		</property>
-	</bean>		
+	</bean>	
+	<bean id="PointAction" class="action.PointAction">
+		<property name="UserService">
+			<ref bean="UserService"/>
+		</property>
+	</bean>	
 	<bean id="LoginAction" class="action.LoginAction">
 		<property name="AdministratorService">
 			<ref bean="AdministratorService"/>

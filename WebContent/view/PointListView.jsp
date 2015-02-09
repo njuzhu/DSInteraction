@@ -6,9 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/point.css">
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/point.js"></script>
 <title>积分管理页面</title>
 </head>
 <body>
@@ -18,14 +20,18 @@
                 <li class="active">管理</li>
                 <li class="active">积分管理</li>
             </ol>
-            <div class="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" style="height:34px"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                    </div>
+        </div>
+        <div class="wrap">
+            <h1 id="usr_h1">用户搜索</h1>
+            <div id="search_line" class="input-group">
+                <input type="text" class="form-control" placeholder="用户名/邮箱搜索">
+                <span class="input-group-btn search_usr">
+                    <button class="btn btn-green" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
             </div>
         </div>
-</body>
+        <form id="findUsers" action="/DSInteraction/view/findUsers" method="post">
+        	<input type="hidden" name="keyword" value="" />
+        </form>
+	</body>
 </html>

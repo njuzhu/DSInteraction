@@ -64,18 +64,6 @@
                             </tr>
                         </thead>
                         <tbody id="list_table">
-                            <!-- <tr>
-                                <td>1</td>
-                                <td>选择题</td>
-                                <td>宝马</td>
-                                <td>50秒</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>选择题</td>
-                                <td>宝马</td>
-                                <td>45秒</td>
-                            </tr> -->
                         </tbody>
                     </table>
                     <div>
