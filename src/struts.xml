@@ -44,5 +44,15 @@
 		</action>
 
 	</package>
+	
+	<package name="mobileServer" extends="json-default" namespace="/mobile">
+		<action name="register" class="z.mobile.action.MobileUserAction" method="register">
+			<result type="json"></result>
+		</action>
+		<action name="login" class="z.mobile.action.MobileUserAction" method="login">
+			<result type="json"></result>
+		</action>
+	</package>
+	
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 </struts>

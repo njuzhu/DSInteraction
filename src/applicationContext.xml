@@ -129,4 +129,22 @@
 			<ref bean="AnswerService"/>
 		</property>
 	</bean>
+	
+<!--  z.mobile.dao
+	<bean id="MobileUserDao" class="z.mobile.dao.impl.MobileUserDaoImpl">		
+	</bean>	
+	
+	z.mobile.service
+	<bean id="MobileUserService" class="z.mobile.service.impl.MobileUserServiceImpl">
+		<property name="MobileUserDao">
+			<ref bean="MobileUserDao"/>
+		</property>
+	</bean>	
+	
+	z.mobile.action
+	<bean id="MobileUserAction" class="z.mobile.action.MobileUserAction">
+		<property name="MobileUserService">
+			<ref bean="MobileUserService"/>
+		</property>
+	</bean> -->
 </beans>
