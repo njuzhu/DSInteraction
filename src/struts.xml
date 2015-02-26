@@ -52,6 +52,9 @@
 		<action name="login" class="z.mobile.action.MobileUserAction" method="login">
 			<result type="json"></result>
 		</action>
+		<action name="updateByName" class="z.mobile.action.MobileUserAction" method="updateByName">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />

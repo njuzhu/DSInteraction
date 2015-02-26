@@ -80,4 +80,39 @@ public class MobileUserAction extends BaseAction {
 	        }
 		}
 	}
+	
+	public void updateByName() {
+		System.out.println("updateByName.action");
+		userService = new MobileUserServiceImpl();
+		int id = Integer.parseInt(request().getParameter("id").toString());
+		String name = request().getParameter("name").toString();
+		MobileUser mobileUser = userService.getUserById(id);
+		boolean result = false;
+		if(mobileUser != null) {
+			mobileUser.setName(name);
+			result = userService.updateUser(mobileUser);
+		}
+		if(result) {   
+			try {    
+	            response().setContentType("text/xml;charset=utf-8");  
+	            String jsonResult = "{\"result\":\"success\"}";
+	            System.out.println(jsonResult);
+	            this.response().getWriter().write(jsonResult);    
+	        } catch (IOException e) {    
+	            e.printStackTrace();    
+	        }
+		} else {
+			try {    
+	            response().setContentType("text/xml;charset=utf-8");  
+	            String jsonResult = "{\"result\":\"error\"}";
+	            System.out.println(jsonResult);
+	            this.response().getWriter().write(jsonResult);    
+	        } catch (IOException e) {    
+	            e.printStackTrace();    
+	        }
+		}
+	}
+	
+	
+	
 }
