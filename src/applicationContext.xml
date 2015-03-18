@@ -130,6 +130,27 @@
 		</property>
 	</bean>
 	
+	<bean id="PlayChoiceAction" class="action.PlayChoiceAction">
+		<property name="CinemaService">
+			<ref bean="CinemaService"/>
+		</property>
+		<property name="CinemaHallService">
+			<ref bean="CinemaHallService"/>
+		</property>
+		<property name="FilmScheduleService">
+			<ref bean="FilmScheduleService"/>
+		</property>
+		<property name="PlayListService">
+			<ref bean="PlayListService"/>
+		</property>
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>	
+	
 <!--  z.mobile.dao
 	<bean id="MobileUserDao" class="z.mobile.dao.impl.MobileUserDaoImpl">		
 	</bean>	

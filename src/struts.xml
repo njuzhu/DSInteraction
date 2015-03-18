@@ -55,6 +55,10 @@
 		<action name="updateByName" class="z.mobile.action.MobileUserAction" method="updateByName">
 			<result type="json"></result>
 		</action>
+		
+		<action name="loadQuestions" class="PlayChoiceAction" method="loadQuestions">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
