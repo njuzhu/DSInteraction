@@ -250,7 +250,7 @@ public class PlayContentAction extends BaseAction{
 		Date currentDate = new Date();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		
-		String dString = date.toString();
+		String dString = sd.format(date).toString();
 		String today = sd.format(currentDate).toString();
 		
 		if(dString.equals(today)){

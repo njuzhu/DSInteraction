@@ -9,7 +9,7 @@
 			var ele = $("<div></div>");
 
 			var left = $("<div id = 'left'><canvas id='tip' width='250' height='250'></canvas><div id = 'left2'><div class='rank'><h1>实时排名</h1><ul class='th'><li>排名</li><li>用户名</li><li>得分</li></ul><ul><li>1</li><li>赵默笙</li><li>13</li></ul><ul><li>2</li><li>何以琛</li><li>12</li></ul><ul><li>3</li><li>萧筱</li><li>11</li></ul><ul><li>4</li><li>路行风</li><li>10</li></ul><ul><li>5</li><li>应晖</li><li>9</li></ul></div></div></div>");
-			var right = $("<div id = 'right'><video id='raceVideo' src='../video/raceVideo.webm' autoplay='autoplay' height='100%'></video></div>") ;
+			var right = $("<div id = 'right'><video id='raceVideo' src='../../video/raceVideo.webm' autoplay='autoplay' height='100%'></video></div>") ;
 
 			ele.append(left);
 			ele.append(right);
@@ -136,7 +136,7 @@
 	};
 
 	function initAngles(){
-		$.getJSON("。。/../../video/raceVideo_angles.json", function(data) {
+		$.getJSON("../../video/raceVideo_angles.json", function(data) {
 			angles = data;
 		});
 	};
