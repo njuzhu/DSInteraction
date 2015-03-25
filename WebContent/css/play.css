@@ -79,12 +79,37 @@ fieldset{
         color: white;
 }
 
-#left2 .rank{
+#left2 .rank_container{
         position: absolute;
-        bottom: 80px;
+        padding-left: 100px;
+        /* bottom: 80px; */
 }
 
-#left2 h1{
+.logo{
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.rank .logo{	
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+img.top{
+	max-height: 56px;
+	margin-left: 29px;
+	margin-right: 68px;
+}
+
+img.rankNO{
+	max-height: 40px;
+	margin-left: 50px;
+	margin-right: 95px;	
+}
+
+/* #left2 h1{
         font-size: 24px;
         margin-bottom: 20px;
 }
@@ -109,7 +134,7 @@ fieldset{
 #left2 .th{ 
         font-weight:bold; 
         border-top:1px solid #FF0000; 
-}
+} */
 
 .warning{
 		color: red;

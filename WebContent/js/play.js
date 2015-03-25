@@ -8,7 +8,7 @@
 			/*var ele = $("<div style='position:absolute;top:0px;left:0px;width:100%;height:100%;background-color:#EEE;z-index:1000'></div>"); */
 			var ele = $("<div></div>");
 
-			var left = $("<div id = 'left'><canvas id='tip' width='500' height='500'></canvas><div id = 'left2'><div class='rank'><h1>实时排名</h1><ul class='th'><li>排名</li><li>用户名</li><li>得分</li></ul><ul><li>1</li><li>赵默笙</li><li>13</li></ul><ul><li>2</li><li>何以琛</li><li>12</li></ul><ul><li>3</li><li>萧筱</li><li>11</li></ul><ul><li>4</li><li>路行风</li><li>10</li></ul><ul><li>5</li><li>应晖</li><li>9</li></ul></div></div></div>");
+			var left = $("<div id = 'left'><canvas id='tip' width='500' height='450'></canvas><div id = 'left2'><div class='rank_container'><div id='rank1' class='rank'><img class='top' src='../../DSInteraction/images/crown.png' /><img id='test' class='logo' src='../../DSInteraction/images/icon.jpg' /></div><div id='rank2' class='rank'><img class='rankNO' src='../../DSInteraction/images/2.png' /><img class='logo' src='../../DSInteraction/images/icon1.jpg' /></div><div id='rank3' class='rank'><img class='rankNO' src='../../DSInteraction/images/3.png' /><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></div><div id='rank4' class='rank'><img class='rankNO' src='../../DSInteraction/images/4.png' /><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></div><div id='rank5' class='rank'><img class='rankNO' src='../../DSInteraction/images/5.png' /><img class='logo' src='../../DSInteraction/images/icon4.jpg' /></div></div></div></div>");
 			var right = $("<div id = 'right'><video id='raceVideo' src='../../DSInteraction/video/raceVideo.webm' autoplay='autoplay' height='100%'></video></div>") ;
 
 			ele.append(left);
@@ -17,6 +17,7 @@
 
 			initAngles();
 	    	setInterval(drawShape,100);
+	    	changeRank(1,"../../DSInteraction/images/icon1.jpg");
 
 	    	$("#raceVideo").unbind("onended").bind('ended',function(){
 				exitFullscreen();
@@ -168,3 +169,80 @@
 	        //浏览器不支持全屏API或已被禁用  
 	    }  
 	};
+	
+	//现逻辑：更新排名时，逐个名次比较，该名次用户是否改变。若改变，原图片渐隐，更改图片后，新图片渐现。
+	//每隔1秒，更新一次排名。
+	var interval1, interval2; 
+	var usr_rank;
+	var new_usr_img;
+
+	//新图片渐现
+	function show()  
+	{  
+	    if(interval2) {  
+	         //这里是为了当鼠标在Div渐隐的过程中移到Div上图片立即慢慢重现  
+	        clearInterval(interval2);  
+	    }  
+	    i = $(usr_rank).css("opacity")*100;  
+	    interval1 = setInterval("showRound()",20);  
+	};  
+
+	function showRound()  
+	{  
+	    i++;  
+	    var usr_logo = $(usr_rank);  
+
+	    if(usr_logo.css("opacity") != 1.0) {  
+	        usr_logo.css("opacity",i/100);
+	    } else {  
+	        if(interval1) {  
+	            clearInterval(interval1);  
+	        }  
+	    }  
+	} 
+
+	//原图片渐隐 
+	function hide()  
+	{  
+	    if(interval1) {  
+	         //这里是为了当鼠标在Div渐现的过程中从Div上移走图片立即慢慢消失  
+	        clearInterval(interval1);  
+	    }  
+	    j = $(usr_rank).css("opacity")*100;  
+	    interval2 = setInterval("hideRound()",10);  
+	}; 
+
+	function hideRound()  
+	{  
+	    j--; 
+	    var usr_logo = $(usr_rank);  
+
+	    if(usr_logo.css("opacity") != 0.0) {  
+	        usr_logo.css("opacity",j/100);
+	    } else {  
+	        if(interval2) {  
+	            clearInterval(interval2);  
+	            $(usr_rank).attr("src",new_usr_img);
+	            show();
+	        }  
+	    } 
+	};  
+
+	function readData(){
+
+	}
+
+	//排名修改，参数为名次，用户头像
+	function changeRank(rank,user_img){
+	    usr_rank = '#rank' + rank + ">.logo";
+	    new_usr_img = user_img;
+	    var usr_old = $(usr_rank).attr("src");
+
+	    if(usr_old != user_img){
+	        hide();
+	        if(interval2){
+	            
+	        }        
+	    }
+	    //$("" + ele + ">.logo").attr("src",user_img);
+	}
