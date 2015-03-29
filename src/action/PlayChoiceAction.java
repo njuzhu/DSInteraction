@@ -47,7 +47,10 @@ public class PlayChoiceAction extends BaseAction{
 	private List durations = new ArrayList();
 	
 	public void loadQuestions(){
-
+		cinemaName = request().getParameter("cinema").toString();
+		hallName = request().getParameter("hall").toString();
+		startTime = request().getParameter("startTime").toString();
+		
 		if(isQuestionPlayList()){
 			//加载选择题
 			searchQuestions();
