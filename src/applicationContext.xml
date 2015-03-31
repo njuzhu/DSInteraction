@@ -102,6 +102,9 @@
 		<property name="QuestionService">
 			<ref bean="QuestionService"/>
 		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
 		<property name="RaceService">
 			<ref bean="RaceService"/>
 		</property>
@@ -149,7 +152,7 @@
 		<property name="AnswerService">
 			<ref bean="AnswerService"/>
 		</property>
-	</bean>	
+	</bean>
 	
 <!--  z.mobile.dao
 	<bean id="MobileUserDao" class="z.mobile.dao.impl.MobileUserDaoImpl">		

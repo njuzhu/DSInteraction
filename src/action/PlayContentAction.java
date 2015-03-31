@@ -19,12 +19,14 @@ import bsh.Console;
 
 import com.thoughtworks.xstream.converters.extended.CharsetConverter;
 
+import model.Answer;
 import model.Cinema;
 import model.CinemaHall;
 import model.FilmSchedule;
 import model.PlayList;
 import model.Question;
 import model.Race;
+import service.AnswerService;
 import service.CinemaHallService;
 import service.CinemaService;
 import service.FilmScheduleService;
@@ -38,6 +40,7 @@ public class PlayContentAction extends BaseAction{
 	private FilmScheduleService filmScheduleService;
 	private PlayListService playListService;
 	private QuestionService questionService;
+	private AnswerService answerService;
 	private RaceService raceService;
 	private String cinemaName;
 	private String hallName;
@@ -181,6 +184,7 @@ public class PlayContentAction extends BaseAction{
 		}
 	}
 
+	//把播放选择题时需要的数据也一同传过去:questions,rightAnswers
 	public List searchQuestions(PlayList playList){
 		String question_ids = playList.getQuestion_ids();
 		String[] ids = question_ids.split(",");		
@@ -189,6 +193,7 @@ public class PlayContentAction extends BaseAction{
 		for (int i = 0; i < ids.length; i++) {
 			int id = Integer.parseInt(ids[i]);				
 			Question question = questionService.findQuestionById(id);
+			String questionContent = question.getContent();
 			String keyword = question.getKeyword();
 			int duration = question.getDuration();
 			String durationStr = formatDuration(duration);
@@ -197,7 +202,25 @@ public class PlayContentAction extends BaseAction{
 			map.put("number", i+1);
 			map.put("type", "选择题");
 			map.put("keyword", keyword);
-			map.put("duration", durationStr);
+			map.put("duration", duration);
+			map.put("formatDuration", durationStr);
+			map.put("question", questionContent);
+			
+			//答案
+			List<Answer> answers = answerService.findAnswersByQid(id);
+			String answerContent = "";
+			String rightAnswer = "";
+			
+			for (Answer answer : answers) {
+				answerContent += answer.getContent() + ",";
+				if(answer.getIsRight() == 1){
+					rightAnswer = answer.getContent();
+				}
+			}			
+			answerContent = answerContent.substring(0, answerContent.length()-2);
+			
+			map.put("answers", answerContent);
+			map.put("rightAnswer", rightAnswer);
 			
 			dataList.add(map);
 		}
@@ -347,6 +370,14 @@ public class PlayContentAction extends BaseAction{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}		
+	}
+
+	public AnswerService getAnswerService() {
+		return answerService;
+	}
+
+	public void setAnswerService(AnswerService answerService) {
+		this.answerService = answerService;
 	}
 
 }

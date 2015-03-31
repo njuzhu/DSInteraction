@@ -74,7 +74,8 @@
 		});
 	};
 	
-	//搜索播放单
+	//搜索播放单,同时初始化接下来要播放的数据
+	var playData = [];
 	function searchList(){
 		$("#searchPlayList").unbind().bind('click',function(){
 			if($.trim($("#cinema_btn").text()) == $.trim("选择电影院")){
@@ -94,8 +95,10 @@
 	            
 				$.get("/DSInteraction/view/findPlayList",{cinemaName:cname,hallName:hname,period:pname},function(data){
 					$("#list_table").empty();
+					playData = JSON.parse(data);
+					console.debug(playData);
 					$.each(JSON.parse(data),function(i,item){
-						$("#list_table").append("<tr><td>" + item.number + "</td><td>" + item.type + "</td><td>" + item.keyword + "</td><td>" + item.duration + "</td></tr>");
+						$("#list_table").append("<tr><td>" + item.number + "</td><td>" + item.type + "</td><td>" + item.keyword + "</td><td>" + item.formatDuration + "</td></tr>");
 					});
 					$("#playList").show();
 				});
