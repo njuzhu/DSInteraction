@@ -55,8 +55,13 @@
 		<action name="updateByName" class="z.mobile.action.MobileUserAction" method="updateByName">
 			<result type="json"></result>
 		</action>
-		
 		<action name="loadQuestions" class="PlayChoiceAction" method="loadQuestions">
+			<result type="json"></result>
+		</action>
+		<action name="uploadImage" class="z.mobile.action.MobileUserAction" method="uploadImage">
+			<result type="json"></result>
+		</action>
+		<action name="rank" class = "z.mobile.action.RankingAction" method="rank">
 			<result type="json"></result>
 		</action>
 	</package>
