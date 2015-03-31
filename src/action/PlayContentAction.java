@@ -241,9 +241,9 @@ public class PlayContentAction extends BaseAction{
 
 			Map map = new HashMap<>();
 			map.put("number", i+1);
-			map.put("type", "选择题");
+			map.put("type", "赛车视频");
 			map.put("keyword", keyword);
-			map.put("duration", durationStr);
+			map.put("formatDuration", durationStr);
 			
 			dataList.add(map);
 		}
