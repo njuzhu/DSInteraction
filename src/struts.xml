@@ -4,7 +4,15 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+     <!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 将默认的上传文件最大值变成500MB -->
+    <constant name="struts.multipart.maxSize" value="524288000" />
+    <!-- 统一编码 -->
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+    
 	<package name="struts2" extends="struts-default" namespace="/view">
 
 		<action name="register" class="UserAction" method="register">
@@ -17,11 +25,25 @@
 		</action>
 		<action name="questionList" class="QuestionListAction">
 		    <result name="success">/view/QuestionListView.jsp</result>
+		    <result name="error">/view/QuestionListView.jsp?search=0</result>
 		</action>
-		<action name="showQuestionDeail" class="QuestionDetailAction">
+		<action name="questionSearchPro" class="QuestionSearchAction">
+		    <result name="success">/view/QuestionListView.jsp?search=1</result>
+		    <result name="notExist">/view/QuestionListView.jsp?search=0</result>
+		</action>
+		<action name="showQuestionDetail" class="QuestionDetailAction">
 		    <result name="success">/view/QuestionDetailView.jsp</result>
 		</action>
-
+		<action name="deleteQuestion" class="QuestionDeleteAction">
+		    <result name="success">/view/QuestionListView.jsp?delete=1</result>
+		    <result name="error">/view/QuestionListView.jsp?search=0</result>
+		</action>
+		<action name="addQuestion" class="QuestionAddAction">
+		    <result name="success">/view/QuestionListView.jsp</result>
+		</action>
+		<action name="editQuestion" class="QuestionEditAction">
+		    <result name="success">/view/QuestionDetailView.jsp</result>
+		</action>
 	</package>
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 </struts>

@@ -1,11 +1,9 @@
 package service.impl;
 
-import java.util.Hashtable;
 import java.util.List;
 
 import dao.AnswerDao;
 import dao.QuestionDao;
-import model.Answer;
 import model.Question;
 import service.QuestionService;
 
@@ -49,6 +47,29 @@ public class QuestionServiceImpl implements QuestionService{
 		}
 		System.out.println("no question!!!!");
 		return null;
+	}
+
+	@Override
+	public List<Question> getQuestionSearchList(String keyword) {
+		List<Question> questionSearchList = questionDao.getQuestionSearchList(keyword);
+		try {
+			return questionSearchList;
+		} catch (Exception e) {
+			System.out.println("no questionSearchList");
+			return null;
+		}
+	}
+
+	@Override
+	public void deleteQuestionById(int ques_id) {
+		Question question = questionDao.findQuestionById(ques_id);
+		questionDao.deleteQuestion(question);
+		
+	}
+
+	@Override
+	public int addQuestion(Question question) {	
+		return questionDao.addQuestion(question);
 	}
 
 }

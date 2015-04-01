@@ -23,5 +23,11 @@ public class AnswerServiceImpl implements AnswerService{
 		}
 		return answers;
 	}
+	
+	@Override
+	public boolean addAnswers(Answer answer) {
+		// TODO Auto-generated method stub
+		return answerDao.addAnswers(answer);
+	}
 
 }

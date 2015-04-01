@@ -6,4 +6,6 @@ import model.Answer;
 
 public interface AnswerService {
     public List<Answer> findAnswersByQid(int ques_id);
+
+	public boolean addAnswers(Answer answer);
 }

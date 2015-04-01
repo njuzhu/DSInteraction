@@ -1,3 +1,4 @@
+/*查看问题详情*/
 .question{
     font-family: "microsoft yahei";
 }
@@ -9,6 +10,14 @@
 .question .box .title{
 	border-bottom: 1px solid #c0c0c0;
 	padding-left: 15px;
+}
+.question .box .title .upload-img {
+	margin-left: 85px;
+	width: 600px;
+	height: 350px;
+}
+.question .box .title p {
+	line-height: 25px;
 }
 .question .box .title span.bold{
 	font-weight: bold;
@@ -34,3 +43,117 @@
 	margin-right: 10px;
 	margin-top: 10px;
 }
+/*查看问题详情*/
+/*新建问题*/
+textarea{
+	resize:none;
+	text-indent: 2em;
+}
+.my-button {
+	width: 90px;
+	height: 30px;
+}
+.my-radio{
+	width: 17px;
+	height: 15px;
+}
+.my-button:hover {
+    background: #3C948B;
+    color: #fff;
+}
+.create_wrap{
+	font-family: "microsoft yahei";
+	border: 1px solid #c0c0c0;
+	padding: 10px;
+	margin-bottom: 35px;
+}
+.create_wrap legend{
+	margin-bottom: 10px;
+}
+.create_wrap .q-content .fl{
+    float: left;
+}
+
+.create_wrap .q-content .file-box{
+    position:relative;
+} 
+
+.create_wrap .q-content .file-box .img-preview {
+	position: absolute;
+	right: 236px;
+	width:138px;
+	height:100px;
+	background: #ccc;
+}
+.create_wrap .q-content .file-box .file{ 
+	position:absolute; 
+	top: 70px; 
+	right: 135px; 
+	height:30px; 
+	filter:alpha(opacity:0);
+	opacity: 0;
+	width:90px 
+}
+
+.create_wrap .q-content .file-box .photo {
+    position: absolute;
+    right: 135px;
+    top: 70px;
+}
+.create_wrap .q-content .file-box .video{
+	position: absolute;
+	right: 0;
+	top: 70px;
+}
+.create_wrap .q-content .fl span.title{
+	float: left;
+	font-weight: bold;
+}
+.create_wrap .q-content .fr{
+    float: right;
+}
+.create_wrap .q-content .fr .my-text{
+	width: 95px;
+}
+.create_wrap .each-answer{
+	position: relative;
+	border-bottom: 2px dashed #3C948B;
+	padding-bottom: 10px;
+	margin: 20px;
+}
+.create_wrap .each-answer img{
+	float: right;
+	margin-right: 20px;
+}
+.create_wrap .each-answer .choice {
+	width: 23px;
+	height: 20px;
+	background: #f5f5f5;
+	float: left;
+}
+.create_wrap .each-answer .right-ans {
+	position: absolute;
+	top: 33px;
+	left: 550px;
+	font-size: 16px;
+}
+.create_wrap .each-answer .picture{
+	position: absolute;
+	top: 30px;
+	left: 660px;
+}
+.create_wrap .each-answer .file {
+	position: absolute;
+	top: 30px;
+	left: 660px;
+	opacity: 0;
+	filter:alpha(opacity:0);
+}
+.create_wrap .each-answer .img-preview {
+	display: inline;
+}
+.create_wrap .save-cancel{
+	float: right;
+	margin-top: 10px;
+}
+/*新建问题*/

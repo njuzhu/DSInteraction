@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,7 +13,9 @@ public class Question {
 	private String content;
 	private String keyword;
 	private int duration;
+	private String upload;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -35,6 +39,12 @@ public class Question {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+	public String getUpload() {
+		return upload;
+	}
+	public void setUpload(String upload) {
+		this.upload = upload;
 	}
 	
 	

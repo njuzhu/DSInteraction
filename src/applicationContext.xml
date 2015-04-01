@@ -68,7 +68,25 @@
 			<ref bean="QuestionService"/>
 		</property>
 	</bean>
+	<bean id="QuestionSearchAction" class="action.QuestionSearchAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+	</bean>
+	<bean id="QuestionDeleteAction" class="action.QuestionDeleteAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+	</bean>
 	<bean id="QuestionDetailAction" class="action.QuestionDetailAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>
+	<bean id="QuestionAddAction" class="action.QuestionAddAction">
 		<property name="QuestionService">
 			<ref bean="QuestionService"/>
 		</property>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import model.Answer;
@@ -34,6 +35,31 @@ public class AnswerDaoImpl implements AnswerDao{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean addAnswers(Answer answer) {
+		// TODO Auto-generated method stub
+		try {
+			Configuration cfg = new Configuration().configure();
+			@SuppressWarnings("deprecation")
+			SessionFactory sessionFactory = cfg.buildSessionFactory();
+			Session session = sessionFactory.openSession();
+			Transaction transaction = session.beginTransaction();
+			session.save(answer);
+			session.flush();
+			transaction.commit();
+			
+			session.close();
+			sessionFactory.close();
+				
+			System.out.println("answer saved");
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

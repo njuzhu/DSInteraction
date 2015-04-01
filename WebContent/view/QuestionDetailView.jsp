@@ -3,6 +3,10 @@
 <%@page import="model.Question"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,12 +28,14 @@
                 <li class="active">查看选择题</li>
             </ol>
             <div class="search">
+                <form action="questionSearchPro" method="post" >
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索">
+                        <input type="text" class="form-control" placeholder="搜索" required="required" name="question.keyword">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" style="height:34px"><span class="glyphicon glyphicon-search"></span></button>
+                            <button class="btn btn-default" type="submit" style="height:34px"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
+                </form>
             </div>
         </div>
         <div class="wrap question">
@@ -43,14 +49,18 @@
                     %>
                     <div class="box">
                         <div class="title">
-                            <p><span class="bold">题目名称：</span><span><%=name %></span></p>
+                            <p><span class="bold">题目名称：</span>
+                            <span><%=name %></span></p>
                             <p><span class="bold">题目内容：</span>
-                                <span> 
-                                    <!--<img src="../images/logo.png">
-                                     <EMBED src="vedio/Wildlife.wmv" autostart=true width="600" height="400"></EMBED> -->
-                                     <%=content %>
-                                </span>
+                                <span><%=content %></span>
                             </p>
+                            <% if(question.getUpload() != null){
+                    	         String upload = question.getUpload();
+                            %>
+                            <p>
+                                 <img src="<%=basePath %>upload/<%=upload %>" class="upload-img"/>
+                            </p>
+                            <%} %>
                         </div>
                         <div class="answer clearfix">
                         <% List<Answer> answers = (List<Answer>)session.getAttribute("answers");
@@ -58,13 +68,22 @@
                         	Answer answer = answers.get(i);
                         %>
                             <p><span><%=answer.getContent() %></span></p>
-                            <!--  <p><span class="choice">B:</span><span>我也不知道这是不是我也不知道这是不是我也不知道这是不是我也不知道这是不是我也不知道这是不是</span></p>
-                            <p><span class="choice">C:</span><span>这不是我们网站的logo这不是我们网站的logo这不是我们网站的logo这不是我们网站的logo这不是我们网站的logo<img src="../images/logo.png"></span></p>
-                            <p><span class="choice">D:</span><span>这是够乱七八糟的这是够乱七八糟的这是够乱七八糟的这是够乱七八糟的这是够乱七八糟的</span></p>-->
+                            <% if(answer.getUpload() != null){ %>
+                               <p><img src="<%=basePath %>upload/<%=answer.getUpload() %>" style="width:600px;height:350px;margin-left:30px;"></p> 
+                            <%} %>
                         <%} %>
+                            <% List<Answer> answers2 = (List<Answer>)session.getAttribute("answers");
+                            for(int i=0; i<answers2.size(); i++){   
+                            	Answer answer = answers2.get(i);
+                            if (answer.getIsRight() == 1){ 
+                                String anw = answer.getContent();
+                                anw = anw.substring(0, 1);
+                            %>
                             <div class="isRight">
-                                <p><span>正确答案:A</span></p>
+                                <p><span>正确答案:&nbsp;<%=anw %></span></p>
                             </div>
+                            <%} }%>
+                         
                         </div>
                     </div>
                     <div class="bottom clearfix">

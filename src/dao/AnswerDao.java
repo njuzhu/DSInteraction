@@ -6,4 +6,6 @@ import model.Answer;
 
 public interface AnswerDao {
     public List<Answer> findAnswers(int question_id);
+
+	public boolean addAnswers(Answer answer);
 }

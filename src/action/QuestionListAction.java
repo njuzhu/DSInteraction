@@ -1,10 +1,6 @@
 package action;
 
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-
-import model.Answer;
 import model.Question;
 import service.QuestionService;
 
@@ -29,9 +25,9 @@ public class QuestionListAction extends BaseAction{
 			this.request().getSession().setAttribute("questions", questionList);
 			System.out.println("show all questions success");
 			return SUCCESS;
+		} else {
+			return ERROR;
 		}
-		
-		return null;
 	}
 
 }
