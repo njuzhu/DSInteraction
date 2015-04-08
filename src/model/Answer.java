@@ -11,6 +11,8 @@ public class Answer {
 	private int question_id;
 	private String content;
 	private int isRight;
+	private String upload;
+	
 	@Id
 	public int getId() {
 		return id;
@@ -35,6 +37,12 @@ public class Answer {
 	}
 	public void setIsRight(int isRight) {
 		this.isRight = isRight;
+	}
+	public String getUpload() {
+		return upload;
+	}
+	public void setUpload(String upload) {
+		this.upload = upload;
 	}
 
 }

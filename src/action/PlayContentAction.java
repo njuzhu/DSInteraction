@@ -208,16 +208,23 @@ public class PlayContentAction extends BaseAction{
 			
 			//答案
 			List<Answer> answers = answerService.findAnswersByQid(id);
-			String answerContent = "";
-			String rightAnswer = "";
+			ArrayList answerContent = new ArrayList<>();
+			int rightAnswer = 0;
 			
-			for (Answer answer : answers) {
-				answerContent += answer.getContent() + ",";
+			for(int j = 0;j < answers.size();j++){
+				Answer answer = answers.get(j);
+				ArrayList<String> ans_imgList = new ArrayList<String>();
+				
+				ans_imgList.add(answer.getContent());
+				ans_imgList.add("../../DSInteraction/images/" + answer.getUpload());
+				
+				answerContent.add(ans_imgList);
+				
 				if(answer.getIsRight() == 1){
-					rightAnswer = answer.getContent();
+					rightAnswer = j;
 				}
-			}			
-			answerContent = answerContent.substring(0, answerContent.length()-2);
+				
+			}
 			
 			map.put("answers", answerContent);
 			map.put("rightAnswer", rightAnswer);

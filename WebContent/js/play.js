@@ -85,11 +85,17 @@
 				$.get("/DSInteraction/view/findPlayList",{cinemaName:cname,hallName:hname,period:pname},function(data){
 					$("#list_table").empty();
 					playData = JSON.parse(data);
-					console.debug(playData);
+					
 					$.each(JSON.parse(data),function(i,item){
 						$("#list_table").append("<tr><td>" + item.number + "</td><td>" + item.type + "</td><td>" + item.keyword + "</td><td>" + item.formatDuration + "</td></tr>");
 						playType = item.type;
+						
+						questions.push(item.question);
+						answers.push(item.answers);
+						right_answers.push(item.rightAnswer);
+						durations.push(item.duration);
 					});
+					
 					$("#playList").show();
 				});
 					            
@@ -97,6 +103,26 @@
 			
         });
 	}
+	//***********************************************游戏开始提示部分***********************************************************
+	var time0 = 5;
+	var timer2;
+
+	//定时器开启
+	function startCountDownTimer(){
+		timer2 = setInterval("countDown()",1000);
+	}
+
+	function countDown(){	
+		if(time0 >= 0){
+			$("body").empty();
+			var img = "<img src='images/count" + time0 + ".png' />"
+			$("body").append(img);
+			
+			time0--;
+		}
+	}
+	
+	
 	//***********************************************赛车视频部分***********************************************************
 	//加载视频
 	function loadRace(){
@@ -189,10 +215,10 @@
 	};
 	
 	//*******************************************选择题部分***********************************************************
-	var questions = ['which is baoma?','which is a'];
-	var answers = [[['content','../../DSInteraction/images/icon.jpg'],['content','../../DSInteraction/images/icon.jpg'],['content','../../DSInteraction/images/icon.jpg'],['content','../../DSInteraction/images/icon.jpg']],[['content2','../../DSInteraction/images/icon4.jpg'],['content2b','../../DSInteraction/images/icon4.jpg'],['content2c','../../DSInteraction/images/icon4.jpg'],['content2d','../../DSInteraction/images/icon4.jpg']]];
-	var right_answers = [3,0];    //A...B & 0...3
-	var durations = [11,15];
+	var questions = [];
+	var answers = [];
+	var right_answers = [];       //A...B & 0...3
+	var durations = [];
 	var current = 0;
 
 	function loadQuestions(){
@@ -237,20 +263,23 @@
 	//更改题目及选项
 	function updateQuestion(){
 		current++;
+		
+		if(current < questions.length){
+			var question_content = questions[current];
+			var answers_content = answers[current];
 
-		var question_content = questions[current];
-		var answers_content = answers[current];
+			$(".question h1").html(question_content);
+			$.each(answers_content,function(i,value){
+				$(".ans_content:eq(" + i + ")").html(value[0]);
+				if(value[1] != null){
+					$(".ans_content:eq(" + i + ")").prev("p").append("<img src='" + value[1] + "' />");
+				}		
+			});
 
-		$(".question h1").html(question_content);
-		$.each(answers_content,function(i,value){
-			$(".ans_content:eq(" + i + ")").html(value[0]);
-			if(value[1] != null){
-				$(".ans_content:eq(" + i + ")").prev("p").append("<img src='" + value[1] + "' />");
-			}		
-		});
+			//重定计时器
+			startTimer();
+		}
 
-		//重定计时器
-		startTimer();
 	}
 
 	var time = 0;
