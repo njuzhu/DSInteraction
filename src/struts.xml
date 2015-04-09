@@ -19,8 +19,29 @@
 			<result name="success">/view/welcome.jsp</result>
             <result name="input">/view/register.jsp</result>
 		</action>
+		
+		<action name="findCinemas" class="PlayContentAction" method="searchAllCinemas">
+			<result name="success">/view/PlayContentView.jsp</result>
+		</action>
+		
+		<action name="findHalls" class="PlayContentAction" method="searchAllCinemaHalls">
+		</action>
+		
+		<action name="findPeriods" class="PlayContentAction" method="searchAllFilmPeriods">
+		</action>
+		
+		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
+		</action>
+		
+		<action name="findUsers" class="PointAction" method="searchUsers">
+			<result name="success">/view/PointResultView.jsp</result>
+		</action>
+		
+		<action name="updatePoint" class="PointAction" method="updateUserPoint">
+		</action>
+
 		<action name="loginPro" class="LoginAction">
-		    <result name="exist">/view/RewardListView.jsp</result>
+			<result name="exist">/view/RewardListView.jsp</result>
 		    <result name="error">/view/login.jsp?error=1</result>
 		</action>
 		<action name="questionList" class="QuestionListAction">
@@ -45,5 +66,27 @@
 		    <result name="success">/view/QuestionDetailView.jsp</result>
 		</action>
 	</package>
+	
+	<package name="mobileServer" extends="json-default" namespace="/mobile">
+		<action name="register" class="z.mobile.action.MobileUserAction" method="register">
+			<result type="json"></result>
+		</action>
+		<action name="login" class="z.mobile.action.MobileUserAction" method="login">
+			<result type="json"></result>
+		</action>
+		<action name="updateByName" class="z.mobile.action.MobileUserAction" method="updateByName">
+			<result type="json"></result>
+		</action>
+		<action name="loadQuestions" class="PlayChoiceAction" method="loadQuestions">
+			<result type="json"></result>
+		</action>
+		<action name="uploadImage" class="z.mobile.action.MobileUserAction" method="uploadImage">
+			<result type="json"></result>
+		</action>
+		<action name="rank" class = "z.mobile.action.RankingAction" method="rank">
+			<result type="json"></result>
+		</action>
+	</package>
+	
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 </struts>

@@ -1,6 +1,8 @@
 package filter;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -28,6 +30,7 @@ public class EncodingFilter implements Filter {
 			req.setCharacterEncoding("utf-8");
 			res.setContentType("text/html;charset=utf-8");
 		}
+		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

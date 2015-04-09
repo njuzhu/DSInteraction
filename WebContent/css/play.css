@@ -1,3 +1,4 @@
+*{margin:0;padding:0;border:0;}
 .btn-green {
   		color: #fff;
   		background-color: #1abc9c;
@@ -11,8 +12,11 @@
   		color: #fff;
   		background-color: #48c9b0;
   		border-color: #48c9b0;
-  }
-  .caret {
+}
+#cinema_btn,#hall_btn,#period_btn{
+		width: 120px;	
+}
+.caret {
   		display: inline-block;
   		width: 0;
   		height: 0;
@@ -31,7 +35,7 @@
   		margin-left: 8px;
   }
   .btn-group{
-  		margin-right: 130px;
+  		margin-right: 100px;
   }
 
   legend{
@@ -58,13 +62,13 @@ fieldset{
   
 #left{
         position: absolute;
-        width: 250px;
+        width: 500px;
         height:100%;
         background-color: black;
         overflow: hidden;
 }
 #right{
-        margin-left: 250px;
+        margin-left: 500px;
         height: 100%;
         background-color: black;
         text-align: center;
@@ -75,12 +79,37 @@ fieldset{
         color: white;
 }
 
-#left2 .rank{
+#left2 .rank_container{
         position: absolute;
-        bottom: 80px;
+        padding-left: 100px;
+        /* bottom: 80px; */
 }
 
-#left2 h1{
+.logo{
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.rank .logo{	
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+img.top{
+	max-height: 56px;
+	margin-left: 29px;
+	margin-right: 68px;
+}
+
+img.rankNO{
+	max-height: 40px;
+	margin-left: 50px;
+	margin-right: 95px;	
+}
+
+/* #left2 h1{
         font-size: 24px;
         margin-bottom: 20px;
 }
@@ -105,4 +134,83 @@ fieldset{
 #left2 .th{ 
         font-weight:bold; 
         border-top:1px solid #FF0000; 
+} */
+
+.warning{
+		color: red;
+}
+
+/* 选择题部分样式 */
+.question{
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 80px;	
+}
+
+.question h1{
+	font-size: 51px;
+}
+
+.answer{
+	font-size: 40px;
+	width: 100%;
+}
+
+.answer .a_img{
+	text-align: center;
+  	padding-left: 70px;
+}
+
+.answer label{
+	margin-right: 20px;
+}
+
+.answer .answer_l{
+	float: left;
+	margin-left: 500px;
+	margin-right: 200px;
+}
+
+.answer .answer_r{
+	float: right;
+	margin-right: 500px;
+}
+
+.ans_img {
+	width: 200px;
+	height: 200px;
+}
+
+.timer{
+	position: absolute;
+	top: 10px;
+	left: 100px;
+}
+
+.timer span{
+	color: red;
+	margin-right: 8px;
+	font-size: 77px;
+}
+
+.mt{
+	margin-top: 200px;
+}
+
+.true_ans{
+	background-image: url(/DSInteraction/images/right.png);
+	width: 60px;
+	height: 60px;
+	text-indent: 12px;
+}
+
+.clearfix:after{
+	content:  " ";
+	display:  block;
+	clear: both;
+	height: 0;
+}
+
+.clearfix{
+	zoom: 1;
 }

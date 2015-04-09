@@ -20,7 +20,7 @@ public class CinemaHallDaoImpl implements CinemaHallDao{
 			SessionFactory sessionFactory = config.buildSessionFactory();
 			Session session = sessionFactory.openSession();
 
-			String hql = "from model.CinemaHall as cinemaHall where cinemaHall.cinema_id='" + cinema_id + "'";
+			String hql = "from model.CinemaHall as cinemaHall where cinemaHall.cinema_id=" + cinema_id;
 			Query query = session.createQuery(hql);
 			List list = query.list();
 

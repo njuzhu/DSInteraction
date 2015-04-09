@@ -2,12 +2,8 @@ package service;
 
 import java.util.List;
 
-import dao.CinemaHallDao;
+import model.CinemaHall;
 
 public interface CinemaHallService {
-	public CinemaHallDao getCinemaHallDao();
-	
-	public void setCinemaHallDao(CinemaHallDao cinemaHallDao);
-	
-	public List<CinemaHallDao> searchCinemaHall(int cinema_id);
+	public List<CinemaHall> searchCinemaHall(int cinema_id);
 }

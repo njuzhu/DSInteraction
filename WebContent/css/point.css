@@ -1,0 +1,124 @@
+*{margin:0;padding:0;border:0;} 
+
+#usr_h1{
+	text-align: center;
+	padding-top: 130px;
+	padding-bottom: 20px;
+	font-size: 24px;
+}
+
+#search_line{
+	padding-left: 250px;
+	padding-right: 250px;
+}
+
+#search_line input{
+	height: 40px;
+	line-height: 40px;
+}
+
+#search_line button{
+	height: 40px;
+	width: 75px;
+}
+
+legend{
+	color: #777;
+	font-size: 18px;
+}
+
+.block{
+	border: 1px solid silver;
+	padding: 10px;
+	padding-left: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.block .left_blc{
+	float: left;
+	height: 150px;
+	width: 150px;
+	overflow: hidden;
+}
+
+.block .left_blc img{
+	height: 150px;
+	width: 150px;
+}
+
+.block .right_blc{
+	float: right;
+	width: 660px;
+}
+
+.block .right_blc div{
+	height: 40px;
+}
+
+.block .right_blc label{
+	float: left;
+	width: 70px;
+}
+
+.point button{
+	height: 35px;
+}
+
+.point input{
+	display: inline;
+	width: 55px;
+	height: 37px;
+	line-height: 37px;
+	vertical-align: middle;
+}
+
+.point .change_label{
+	padding-right: 35px;
+}
+
+.point .point_label{
+	padding-left: 10px;
+	padding-right: 50px;
+}
+
+.point #tip{
+	color:red;
+}
+
+.search_usr span{
+	height: 20px;
+	top: 2px;	
+}
+
+.no_usr{
+	text-align: center;
+	color: red;
+	font-size: 20px;
+}
+
+.btn-green {
+  color: #fff;
+  background-color: #1abc9c;
+}
+.btn-green:hover,
+.btn-green.hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active{
+  color: #fff;
+  background-color: #48c9b0;
+  border-color: #48c9b0;
+  }
+
+.clearfix:after{
+	content:  " ";
+	display:  block;
+	clear: both;
+	height: 0;
+}
+
+.clearfix{
+	zoom: 1;
+}

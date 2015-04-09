@@ -9,3 +9,4 @@ public interface AnswerDao {
 
 	public boolean addAnswers(Answer answer);
 }
+

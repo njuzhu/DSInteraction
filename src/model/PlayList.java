@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,12 +12,13 @@ public class PlayList {
 	private int id;
 	private int filmSchedule_id;
 	private String name;
-	private int gameType;
+	private int gameType;		//0为全选择题，1为全赛车视频，2为混合类型
 	private int duration;
 	private String question_ids;
 	private String race_ids;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}

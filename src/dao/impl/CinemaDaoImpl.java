@@ -23,7 +23,7 @@ public class CinemaDaoImpl implements CinemaDao{
 			String hql = "from model.Cinema";
 			Query query = session.createQuery(hql);
 			List list = query.list();
-
+			
 			if ((list.size()) == 0)
 				return null;
 			else
@@ -44,13 +44,16 @@ public class CinemaDaoImpl implements CinemaDao{
 
 			String hql = "from model.Cinema as cinema where cinema."
 					+ column + "='" + value + "'";
+			
 			Query query = session.createQuery(hql);
 			List list = query.list();
 
-			if ((list.size()) == 0)
+			if ((list.size()) == 0){
 				return null;
-			else
+			}
+			else{
 				return (Cinema) list.get(0);
+			}				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

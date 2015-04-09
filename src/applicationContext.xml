@@ -12,8 +12,6 @@
 
 	<!-- dao -->
 	<bean id="UserDao" class="dao.impl.UserDaoImpl">		
-	</bean>
-	<bean id="CinemaDao" class="dao.impl.CinemaDaoImpl">		
 	</bean>	
 	<bean id="AdministratorDao" class="dao.impl.AdministratorDaoImpl">
 	</bean>
@@ -21,12 +19,17 @@
 	</bean>
 	<bean id="AnswerDao" class="dao.impl.AnswerDaoImpl">
 	</bean>
+	<bean id="CinemaDao" class="dao.impl.CinemaDaoImpl">		
+	</bean>	
 	<bean id="CinemaHallDao" class="dao.impl.CinemaHallDaoImpl">		
 	</bean>	
 	<bean id="FilmScheduleDao" class="dao.impl.FilmScheduleDaoImpl">		
 	</bean>	
-	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">		
+	<bean id="PlayListDao" class="dao.impl.PlayListDaoImpl">
+	</bean>
+	<bean id="RaceDao" class="dao.impl.RaceDaoImpl">		
 	</bean>			
+
 	<!-- service -->
 	<bean id="UserService" class="service.impl.UserServiceImpl">
 		<property name="UserDao">
@@ -51,6 +54,31 @@
 			<ref bean="AnswerDao"/>
 		</property>
 	</bean>	
+	<bean id="CinemaService" class="service.impl.CinemaServiceImpl">
+		<property name="CinemaDao">
+			<ref bean="CinemaDao"/>
+		</property>
+	</bean>	
+	<bean id="CinemaHallService" class="service.impl.CinemaHallServiceImpl">
+		<property name="CinemaHallDao">
+			<ref bean="CinemaHallDao"/>
+		</property>
+	</bean>	
+	<bean id="FilmScheduleService" class="service.impl.FilmScheduleServiceImpl">
+		<property name="FilmScheduleDao">
+			<ref bean="FilmScheduleDao"/>
+		</property>
+	</bean>	
+	<bean id="PlayListService" class="service.impl.PlayListServiceImpl">
+		<property name="PlayListDao">
+			<ref bean="PlayListDao"/>
+		</property>
+	</bean>
+	<bean id="RaceService" class="service.impl.RaceServiceImpl">
+		<property name="RaceDao">
+			<ref bean="RaceDao"/>
+		</property>
+	</bean>		
 	
 	<!-- action -->
 	<bean id="UserAction" class="action.UserAction">
@@ -58,6 +86,34 @@
 			<ref bean="UserService"/>
 		</property>
 	</bean>
+	<bean id="PlayContentAction" class="action.PlayContentAction">
+		<property name="CinemaService">
+			<ref bean="CinemaService"/>
+		</property>
+		<property name="CinemaHallService">
+			<ref bean="CinemaHallService"/>
+		</property>
+		<property name="FilmScheduleService">
+			<ref bean="FilmScheduleService"/>
+		</property>
+		<property name="PlayListService">
+			<ref bean="PlayListService"/>
+		</property>
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>	
+	<bean id="PointAction" class="action.PointAction">
+		<property name="UserService">
+			<ref bean="UserService"/>
+		</property>
+	</bean>	
 	<bean id="LoginAction" class="action.LoginAction">
 		<property name="AdministratorService">
 			<ref bean="AdministratorService"/>
@@ -86,6 +142,7 @@
 			<ref bean="AnswerService"/>
 		</property>
 	</bean>
+
 	<bean id="QuestionAddAction" class="action.QuestionAddAction">
 		<property name="QuestionService">
 			<ref bean="QuestionService"/>
@@ -94,4 +151,45 @@
 			<ref bean="AnswerService"/>
 		</property>
 	</bean>
+
+	
+	<bean id="PlayChoiceAction" class="action.PlayChoiceAction">
+		<property name="CinemaService">
+			<ref bean="CinemaService"/>
+		</property>
+		<property name="CinemaHallService">
+			<ref bean="CinemaHallService"/>
+		</property>
+		<property name="FilmScheduleService">
+			<ref bean="FilmScheduleService"/>
+		</property>
+		<property name="PlayListService">
+			<ref bean="PlayListService"/>
+		</property>
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>
+	
+<!--  z.mobile.dao
+	<bean id="MobileUserDao" class="z.mobile.dao.impl.MobileUserDaoImpl">		
+	</bean>	
+	
+	z.mobile.service
+	<bean id="MobileUserService" class="z.mobile.service.impl.MobileUserServiceImpl">
+		<property name="MobileUserDao">
+			<ref bean="MobileUserDao"/>
+		</property>
+	</bean>	
+	
+	z.mobile.action
+	<bean id="MobileUserAction" class="z.mobile.action.MobileUserAction">
+		<property name="MobileUserService">
+			<ref bean="MobileUserService"/>
+		</property>
+	</bean> -->
+
 </beans>

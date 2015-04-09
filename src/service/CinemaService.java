@@ -1,11 +1,11 @@
 package service;
 
-import dao.CinemaDao;
+import java.util.List;
+
+import model.Cinema;
 
 public interface CinemaService {
-	public CinemaDao getCinemaDao();
+	public List<Cinema> searchAllCinemas();
 	
-	public void setCinemaDao(CinemaDao cinemaDao);
-	
-	public CinemaDao searchAllCinemas();
+	public Cinema searchCinema(String cinemaName);
 }

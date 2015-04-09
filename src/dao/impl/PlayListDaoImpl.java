@@ -8,9 +8,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import model.PlayList;
-import dao.PlatListDao;
+import dao.PlayListDao;
 
-public class PlayListDaoImpl implements PlatListDao{
+public class PlayListDaoImpl implements PlayListDao{
 
 	@Override
 	public PlayList find(int filmSchedule_id) {

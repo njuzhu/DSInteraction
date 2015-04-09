@@ -12,3 +12,4 @@ public interface QuestionDao {
 	public void deleteQuestion(Question question);
 	public int addQuestion(Question question);
 }
+

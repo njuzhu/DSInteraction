@@ -1,11 +1,7 @@
 package service;
 
-import dao.PlatListDao;
+import model.PlayList;
 
 public interface PlayListService {
-	public PlatListDao getPlatListDao();
-	
-	public void setPlayListDao(PlatListDao platListDao);
-	
-	public void searchPlayList(int filmSchedule_id);
+	public PlayList searchPlayList(int filmSchedule_id);
 }

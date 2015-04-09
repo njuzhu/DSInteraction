@@ -10,7 +10,7 @@
                     </li> 
                     <li><a><span class="glyphicon glyphicon-question-sign"></span>题库</a> 
                         <ul> 
-                            <li><a href="<%=request.getContextPath()+"/view/questionList"%>">选择题</a></li> 
+                            <li><a href="<%=request.getContextPath()+"/view/questionList"%>">选择题</a></li>  
                             <li><a href="RacingListView.jsp">赛车视频</a></li> 
                         </ul> 
                     </li> 
@@ -21,11 +21,12 @@
                             <li><a href="CinemaListView.jsp">电影院管理</a></li> 
                         </ul> 
                     </li> 
-                    <li><a href="PlayContentView.jsp" class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a> 
+                    <li>
+                    	<a href="<%=request.getContextPath()+"/view/findCinemas"%>"  class="no-border"><span class="glyphicon glyphicon-film"></span>播放</a>
                     </li> 
                 </ul> 
                 <div class="login">
                     <a href="login.jsp">退出</a>
                 </div>
             </div>
-        </div>
+</div>
