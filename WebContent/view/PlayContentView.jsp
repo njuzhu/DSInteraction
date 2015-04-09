@@ -10,6 +10,7 @@
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/play.js"></script>
+<script type="text/javascript" src="../js/firework.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
 <title>播放内容页面</title>
 </head>
