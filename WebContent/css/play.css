@@ -204,6 +204,20 @@ img.rankNO{
 	text-indent: 12px;
 }
 
+/*倒计时部分样式*/
+.countDownCanvas{
+	background-image: url(/DSInteraction/images/background.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.countNum{
+	color: white;
+  	text-align: center;
+ 	font-size: 300;
+  	margin-top: 325px;
+}
+
 .clearfix:after{
 	content:  " ";
 	display:  block;

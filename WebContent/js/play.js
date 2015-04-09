@@ -4,12 +4,14 @@
 		
 		$("#startPlay").unbind().bind('click',function(){
 			fullscreen();
-			if(playType == "选择题"){
-				startTimer();
-				loadQuestions();
-			}else{
-				loadRace();
-			}
+			loadBackground();
+			
+//			if(playType == "选择题"){
+//				startTimer();
+//				loadQuestions();
+//			}else{
+//				loadRace();
+//			}
 		});
 		
 	};
@@ -113,13 +115,26 @@
 	}
 
 	function countDown(){	
-		if(time0 >= 0){
-			$("body").empty();
-			var img = "<img src='images/count" + time0 + ".png' />"
-			$("body").append(img);
-			
-			time0--;
+		time0--;
+
+		if(time0 > 0){
+			$(".countNum").html(time0);
+		}else if(time0 == 0){
+			$(".countNum").html("start");
 		}
+	}
+	
+	//提示游戏即将开始
+	
+
+	//设置背景图片
+	function loadBackground(){
+		$("body").empty();
+		$("body").addClass("countDownCanvas");
+		var count_div = "<div class='countNum'>" + time0 + "</div>";
+		$("body").append(count_div);
+
+		startCountDownTimer();
 	}
 	
 	
