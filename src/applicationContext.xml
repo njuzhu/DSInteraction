@@ -108,6 +108,9 @@
 		<property name="RaceService">
 			<ref bean="RaceService"/>
 		</property>
+		<property name="UserService">
+			<ref bean="UserService"/>
+		</property>
 	</bean>	
 	<bean id="PointAction" class="action.PointAction">
 		<property name="UserService">
