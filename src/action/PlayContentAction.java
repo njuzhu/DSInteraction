@@ -26,6 +26,7 @@ import model.FilmSchedule;
 import model.PlayList;
 import model.Question;
 import model.Race;
+import model.User;
 import service.AnswerService;
 import service.CinemaHallService;
 import service.CinemaService;
@@ -33,6 +34,9 @@ import service.FilmScheduleService;
 import service.PlayListService;
 import service.QuestionService;
 import service.RaceService;
+import service.UserService;
+import z.mobile.action.RankingAction;
+import z.mobile.model.TempInfo;
 
 public class PlayContentAction extends BaseAction{
 	private CinemaService cinemaService;
@@ -42,6 +46,9 @@ public class PlayContentAction extends BaseAction{
 	private QuestionService questionService;
 	private AnswerService answerService;
 	private RaceService raceService;
+	private UserService userService;
+	
+	private RankingAction rankingAction;
 	private String cinemaName;
 	private String hallName;
 	private String period;
@@ -257,6 +264,37 @@ public class PlayContentAction extends BaseAction{
 		return dataList;
 	}
 	
+	//获取排名,显示前5名
+	public void rank(){
+		List<TempInfo> tempInfos = rankingAction.tempInfos;
+		List dataList = new ArrayList<>();		
+		
+		for(int i = 0;i < 5;i++){
+			Map map = new HashMap<>();
+//			TempInfo tmpInfo = tempInfos.get(i); 
+//			int uid = tmpInfo.getUid();
+//			int score = tmpInfo.getScore();
+//			
+//			User user = userService.getUserInfo(uid);
+//			String image = user.getImage();
+			String image = "icon" + i + ".png";
+			int score = i;
+			
+			map.put("usr_img", image);
+			map.put("usr_score", score);
+			
+			dataList.add(map);
+		}
+				
+		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
+		
+		try {
+			this.response().getWriter().write(jArray.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String formatDuration(int duration){
 		int minute = duration / 60;
 		String durationStr;
@@ -385,6 +423,14 @@ public class PlayContentAction extends BaseAction{
 
 	public void setAnswerService(AnswerService answerService) {
 		this.answerService = answerService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 }

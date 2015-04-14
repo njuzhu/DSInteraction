@@ -151,6 +151,9 @@
 	
 	
 	//***********************************************赛车视频部分***********************************************************
+	var timer3;
+	var timer4;
+	
 	//加载视频
 	function loadRace(){
 		$("body").empty();
@@ -167,11 +170,14 @@
 		$("body").append(ele);
 
 		initAngles();
-    	setInterval(drawShape,100);
-    	changeRank(1,"../../DSInteraction/images/icon1.jpg");
-
+    	timer3 = setInterval("drawShape()",100);
+    	readData();
+    	//changeRank(1,"../../DSInteraction/images/icon1.jpg");
+    	
     	$("#raceVideo").unbind("onended").bind('ended',function(){
 //			exitFullscreen();
+    		clearInterval(timer3);
+    		clearInterval(timer4);
 			loadRankList();
 		});
 	}
@@ -346,6 +352,8 @@
 	var interval1, interval2; 
 	var usr_rank;
 	var new_usr_img;
+	var usr_images = [];
+	var usr_scores = [];
 
 	//新图片渐现
 	function show()  
@@ -400,7 +408,32 @@
 	};  
 
 	function readData(){
-
+		$.get("/DSInteraction/view/getRank",function(data){
+			var rankData = JSON.parse(data);
+			
+			$.each(JSON.parse(data),function(i,item){
+				usr_images.push(item.usr_img);
+				usr_scores.push(item.usr_score);
+				
+			});
+			
+			console.debug(usr_images);
+			console.debug(usr_scores);
+			
+			for (var i = 1; i < 6; i++) {
+				changeRank(i,usr_images[i-1]);
+			}
+			clearData();
+			
+			timer4 = setInterval("readData()",4000);
+		
+		});
+		
+	}
+	
+	function clearData(){
+		usr_images.length = 0;
+		usr_scores.length = 0;
 	}
 
 	//排名修改，参数为名次，用户头像
