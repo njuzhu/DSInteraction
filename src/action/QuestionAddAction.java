@@ -51,7 +51,6 @@ public class QuestionAddAction extends BaseAction{
     {
 		
 		uploadFileName = getNo(uploadFileName);
-		System.out.println("uploadFileName"+uploadFileName);
 		question.setUpload(uploadFileName);
 		int question_id = questionService.addQuestion(question);
 		String realpath = ServletActionContext.getServletContext().getRealPath("/upload");

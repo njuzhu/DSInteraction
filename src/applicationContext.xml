@@ -142,7 +142,22 @@
 			<ref bean="AnswerService"/>
 		</property>
 	</bean>
-
+    <bean id="QuestionEditAction" class="action.QuestionEditAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>
+	<bean id="QuestionSaveAction" class="action.QuestionSaveAction">
+		<property name="QuestionService">
+			<ref bean="QuestionService"/>
+		</property>
+		<property name="AnswerService">
+			<ref bean="AnswerService"/>
+		</property>
+	</bean>
 	<bean id="QuestionAddAction" class="action.QuestionAddAction">
 		<property name="QuestionService">
 			<ref bean="QuestionService"/>
@@ -151,7 +166,41 @@
 			<ref bean="AnswerService"/>
 		</property>
 	</bean>
-
+    <bean id="RaceListAction" class="action.RaceListAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceSearchAction" class="action.RaceSearchAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceAddAction" class="action.RaceAddAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceDeleteAction" class="action.RaceDeleteAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceDetailAction" class="action.RaceDetailAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceEditAction" class="action.RaceEditAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
+	<bean id="RaceSaveAction" class="action.RaceSaveAction">
+		<property name="RaceService">
+			<ref bean="RaceService"/>
+		</property>
+	</bean>
 	
 	<bean id="PlayChoiceAction" class="action.PlayChoiceAction">
 		<property name="CinemaService">

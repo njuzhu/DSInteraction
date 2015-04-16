@@ -1,0 +1,60 @@
+/*视频详情 start*/
+.race {
+}
+.race .bottom {
+	margin-top: 10px;
+	border-top : 1px solid #c0c0c0;
+	padding-top: 10px;
+}
+.race .bottom .edit {
+	float: right;
+}
+/*视频详情 end*/
+/*新增视频 start*/
+.race-create-wrap {
+    font-family: "microsoft yahei";
+}
+.race-create-wrap .r-content {
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+}
+.race-create-wrap .r-content .title {
+	font-weight: bold;
+}
+.race-create-wrap .r-content .video {
+	margin-top: 10px;
+	position: relative;
+}
+.save-cancel {
+	float: right;
+	margin-top: 10px;
+}
+.my-button {
+	width: 90px;
+    height: 30px;
+}
+.my-button:hover {
+	background: #3C948B;
+    color: #fff;
+}
+.file {
+	position: absolute;
+	top: 0;
+	opacity: 0;
+}
+a.cancel {
+  width: 90px;
+  height: 30px;
+  display: inline-block;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #333;
+  background: #ddd;
+}
+a.cancel:hover {
+  background: #3c948b;
+  color: #fff;
+}
+/*新增视频 end*/

@@ -1,4 +1,3 @@
-<%@page import="java.util.Iterator"%>
 <%@page import="model.Answer"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Question"%>
@@ -43,7 +42,7 @@
                             <tr>
                                 <th>编号</th>
                                 <th>名称</th>
-                                <th>时间</th>
+                                <th>时间(s)</th>
                                 <th>查看</th>
                                 <th>编辑</th>
                                 <th>删除</th>

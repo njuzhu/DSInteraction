@@ -63,7 +63,34 @@
 		    <result name="success">/view/QuestionListView.jsp</result>
 		</action>
 		<action name="editQuestion" class="QuestionEditAction">
-		    <result name="success">/view/QuestionDetailView.jsp</result>
+		    <result name="success">/view/QuestionCreateView.jsp?edit=1</result>
+		</action>
+		<action name="saveQuestion" class="QuestionSaveAction">
+		    <result name="success">/view/QuestionListView.jsp</result>
+		</action>
+		<action name="raceList" class="RaceListAction">
+		    <result name="success">/view/RaceListView.jsp</result>
+		    <result name="error">/view/RaceListView.jsp?search=0</result>
+		</action>
+		<action name="raceSearchPro" class="RaceSearchAction">
+		    <result name="success">/view/RaceListView.jsp?search=1</result>
+		    <result name="notExist">/view/RaceListView.jsp?search=0</result>
+		</action>
+		<action name="addRace" class="RaceAddAction">
+		    <result name="success">/view/RaceListView.jsp</result>
+		</action>
+		<action name="deleteRace" class="RaceDeleteAction">
+		    <result name="success">/view/RaceListView.jsp?delete=1</result>
+		    <result name="error">/view/RaceListView.jsp?search=0</result>
+		</action>
+		<action name="showRaceDetail" class="RaceDetailAction">
+		    <result name="success">/view/RaceDetailView.jsp</result>
+		</action>
+		<action name="editRace" class="RaceEditAction">
+		    <result name="success">/view/RaceCreateView.jsp?edit=1</result>
+		</action>
+		<action name="saveRace" class="RaceSaveAction">
+		    <result name="success">/view/RaceListView.jsp</result>
 		</action>
 	</package>
 	

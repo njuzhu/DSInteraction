@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*查看问题详情*/
 .question{
     font-family: "microsoft yahei";
@@ -53,6 +52,22 @@ textarea{
 .my-button {
 	width: 90px;
 	height: 30px;
+}
+a.cancel {
+	width: 90px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	color: #333;
+	background: #ddd;
+}
+a.cancel:hover {
+	background: #3c948b;
+	color: #fff;
+	
 }
 .my-radio{
 	width: 17px;
