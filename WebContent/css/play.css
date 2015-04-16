@@ -218,6 +218,66 @@ img.rankNO{
   	margin-top: 325px;
 }
 
+.countTipCanvas{
+	background-image: url(/DSInteraction/images/countDownTip.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.countTip{
+	color: white;
+	font-size: 100px;
+	text-align: center;
+	margin-top: 390px;
+}
+
+/*总排名部分样式*/
+.rankList h1{
+	text-align: center;
+  	font-size: 50px;
+  	margin-bottom: 60px;
+  	color:white;
+}
+
+.rankList ul{
+	  text-align: center;
+}
+
+.rankList li{
+	height: 165px;
+ 	overflow: hidden;
+ 	margin-bottom: 20px;
+}
+
+.rankList li span{
+	margin-right: 100px;
+}
+
+.rankList .userName{
+	font-size: 36px;
+	color:white;
+}
+
+.rankList .userImage img{
+	width: 165px;
+	height: 165px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.rankList .userScore{
+	font-size: 36px;
+	color:white;
+}
+
+.rankList .crown{
+	max-height: 65px;
+}
+
+.nightMode{
+	background-color:black;
+}
+
 .clearfix:after{
 	content:  " ";
 	display:  block;

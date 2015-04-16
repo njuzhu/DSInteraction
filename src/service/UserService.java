@@ -20,5 +20,7 @@ public interface UserService {
 	public List<User> searchUsers(String keyword);
 	
 	public boolean updateUserPoint(int usr_id,int new_point);
+	
+	public User getUserInfo(int uid);
 
 }

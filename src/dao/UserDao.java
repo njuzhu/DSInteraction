@@ -14,4 +14,6 @@ public interface UserDao {
 	public List<User> find(String keyword);
 	
 	public boolean updateUserPoint(int usr_id,int new_point);
+	
+	public User getUser(int uid);
 }

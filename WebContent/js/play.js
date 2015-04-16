@@ -4,14 +4,16 @@
 		
 		$("#startPlay").unbind().bind('click',function(){
 			fullscreen();
-			loadBackground();
+			//loadRankList();
+			warningTip();
 			
-//			if(playType == "选择题"){
-//				startTimer();
-//				loadQuestions();
-//			}else{
-//				loadRace();
-//			}
+			if(playType == "选择题"){
+				setTimeout("startTimer()",8000);
+				setTimeout("loadQuestions()",8000);
+			}else{
+				setTimeout("loadRace()",8000);
+			}
+			
 		});
 		
 	};
@@ -124,12 +126,22 @@
 		}
 	}
 	
-	//提示游戏即将开始
-	
+	//提示将进入倒计时
+	function warningTip(){
+		$("body").empty();
+
+		$("body").addClass("countTipCanvas");
+		var tip_div = "<div class='countTip'>游戏即将开始...</div>";
+		$("body").append(tip_div);
+
+		setTimeout("loadBackground()",2000);
+	}
 
 	//设置背景图片
 	function loadBackground(){
 		$("body").empty();
+
+		$("body").removeClass("countTipCanvas");
 		$("body").addClass("countDownCanvas");
 		var count_div = "<div class='countNum'>" + time0 + "</div>";
 		$("body").append(count_div);
@@ -139,9 +151,14 @@
 	
 	
 	//***********************************************赛车视频部分***********************************************************
+	var timer3;
+	var timer4;
+	
 	//加载视频
 	function loadRace(){
 		$("body").empty();
+		$("body").removeClass("countDownCanvas");
+		
 		/*var ele = $("<div style='position:absolute;top:0px;left:0px;width:100%;height:100%;background-color:#EEE;z-index:1000'></div>"); */
 		var ele = $("<div></div>");
 
@@ -153,11 +170,15 @@
 		$("body").append(ele);
 
 		initAngles();
-    	setInterval(drawShape,100);
-    	changeRank(1,"../../DSInteraction/images/icon1.jpg");
-
+    	timer3 = setInterval("drawShape()",100);
+    	readData();
+    	//changeRank(1,"../../DSInteraction/images/icon1.jpg");
+    	
     	$("#raceVideo").unbind("onended").bind('ended',function(){
-			exitFullscreen();
+//			exitFullscreen();
+    		clearInterval(timer3);
+    		clearInterval(timer4);
+			loadRankList();
 		});
 	}
 	
@@ -238,6 +259,7 @@
 
 	function loadQuestions(){
 		$("body").empty();
+		$("body").removeClass("countDownCanvas");
 
 		var question_div = "<div class='question'><h1>" + questions[current] + "</h1></div>";
 		var ans_top_div = "<div class='answer clearfix'><div class='answer_l'><p><label>A.</label>" + isImage(answers[current][0][1]) + "</p><p class='ans_content a_img'>" + answers[current][0][0] + "</p><input class='tag' type='hidden' value='1' /></div><div class='answer_r'><p><label>B.</label>" + isImage(answers[current][1][1]) + "</p><p class='ans_content a_img'>" + answers[current][1][0] + "</p><input class='tag' type='hidden' value='2' /></div></div>";
@@ -293,6 +315,9 @@
 
 			//重定计时器
 			startTimer();
+		}else{
+			//已显示完最后一题
+			loadRankList();
 		}
 
 	}
@@ -321,12 +346,14 @@
 		}
 	}
 	
-	//**************************************************排名部分***************************************************
+	//**************************************************实时排名部分***************************************************
 	//现逻辑：更新排名时，逐个名次比较，该名次用户是否改变。若改变，原图片渐隐，更改图片后，新图片渐现。
 	//每隔1秒，更新一次排名。
 	var interval1, interval2; 
 	var usr_rank;
 	var new_usr_img;
+	var usr_images = [];
+	var usr_scores = [];
 
 	//新图片渐现
 	function show()  
@@ -381,7 +408,32 @@
 	};  
 
 	function readData(){
-
+		$.get("/DSInteraction/view/getRank",function(data){
+			var rankData = JSON.parse(data);
+			
+			$.each(JSON.parse(data),function(i,item){
+				usr_images.push(item.usr_img);
+				usr_scores.push(item.usr_score);
+				
+			});
+			
+			console.debug(usr_images);
+			console.debug(usr_scores);
+			
+			for (var i = 1; i < 6; i++) {
+				changeRank(i,usr_images[i-1]);
+			}
+			clearData();
+			
+			timer4 = setInterval("readData()",4000);
+		
+		});
+		
+	}
+	
+	function clearData(){
+		usr_images.length = 0;
+		usr_scores.length = 0;
 	}
 
 	//排名修改，参数为名次，用户头像
@@ -397,4 +449,81 @@
 	        }        
 	    }
 	    //$("" + ele + ">.logo").attr("src",user_img);
+	}
+	
+	//**************************************************总排名部分***************************************************
+	function loadRankList(){
+		$("body").empty();
+		$("body").addClass("nightMode");
+
+		var rank_div = $("<div class='rankList'></div>");
+		var rank_title = $("<h1>排名榜</h1>");
+		var rank_ul = $("<ul type='none'></ul>");
+
+		var rank_li1 = $("<li><span><img class='crown' src='../../DSInteraction/images/crown.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+		var rank_li2 = $("<li><span><img src='../../DSInteraction/images/2.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+		var rank_li3 = $("<li><span><img src='../../DSInteraction/images/3.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+		var rank_li4 = $("<li><span><img src='../../DSInteraction/images/4.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+		var rank_li5 = $("<li><span><img src='../../DSInteraction/images/5.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+
+		rank_ul.append(rank_li1);
+		rank_ul.append(rank_li2);
+		rank_ul.append(rank_li3);
+		rank_ul.append(rank_li4);
+		rank_ul.append(rank_li5);
+
+		rank_div.append(rank_title);
+		rank_div.append(rank_ul);
+
+		$("body").append(rank_div);
+
+		startFirework();
+	}
+
+	function startFirework(){
+
+	    var fireworks=[];
+
+	    var total=15;
+
+	    window.setInterval(function(){
+
+	        for (var i = 0; i < total; i++) {
+
+	            if (!fireworks[i] || !fireworks[i].parentElement) {
+
+	                var x=Utils.getIntervalRandom(50,document.body.offsetWidth-50);
+
+	                var shotHeight=Utils.getIntervalRandom(100,450);
+
+	                var radius=Utils.getIntervalRandom(50,200);
+
+	                var particleCount=Utils.getIntervalRandom(40,80);
+
+	                var speed=Utils.getIntervalRandom(10,20);
+
+	                var color="#"+Utils.getIntervalRandom(0,16777215).toString(16).padLeft(6,"f");
+
+	                fireworks[i] = new Firework(x, shotHeight, radius, particleCount, color, speed);
+
+	            }
+
+	        }
+
+	    },100);
+
+	    
+
+	    window.setInterval(function(){
+
+	        var currentIndex=Utils.getIntervalRandom(0,total);
+
+	        if(fireworks[currentIndex] && fireworks[currentIndex].parentElement && !fireworks[currentIndex].isShoted){
+
+	            fireworks[currentIndex].shot();
+
+	        }
+
+	    },500);
+
 	}

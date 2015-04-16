@@ -33,6 +33,9 @@
 		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
 		</action>
 		
+		<action name="getRank" class="PlayContentAction" method="rank">
+		</action>
+		
 		<action name="findUsers" class="PointAction" method="searchUsers">
 			<result name="success">/view/PointResultView.jsp</result>
 		</action>

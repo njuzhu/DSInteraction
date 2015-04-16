@@ -125,4 +125,28 @@ public class UserDaoImpl implements UserDao{
 		return false;
 	}
 
+	@Override
+	public User getUser(int uid) {
+		try{			
+			Configuration cfg = new Configuration().configure();
+			@SuppressWarnings("deprecation")
+			SessionFactory sessionFactory = cfg.buildSessionFactory();
+			Session session = sessionFactory.openSession();
+			
+			String	hql = "from model.User as usr where usr.id='"+uid+"'";			
+			Query query = session.createQuery(hql);
+			
+			List list = query.list();
+			
+			if(list.size() == 0){
+				return null;
+			}else{
+				return (User)list.get(0);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }
