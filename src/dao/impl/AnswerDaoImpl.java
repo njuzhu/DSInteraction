@@ -62,4 +62,26 @@ public class AnswerDaoImpl implements AnswerDao{
 		return false;
 	}
 
+	@Override
+	public boolean updateAnswer(Answer answer) {
+		// TODO Auto-generated method stub
+		try {
+			Configuration config = new Configuration().configure();
+			@SuppressWarnings("deprecation")
+			SessionFactory sessionFactory = config.buildSessionFactory();
+			Session session=sessionFactory.openSession();
+			Transaction tx=session.beginTransaction();
+			session.update(answer);
+			tx.commit();
+			session.close();
+			sessionFactory.close();
+			
+			System.out.println("answer updated successfully");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

@@ -13,6 +13,7 @@ public class Race {
 	private String name;
 	private String content;
 	private int duration;
+	private String txt;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +43,12 @@ public class Race {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+	public String getTxt() {
+		return txt;
+	}
+	public void setTxt(String txt) {
+		this.txt = txt;
 	}
 	
 }

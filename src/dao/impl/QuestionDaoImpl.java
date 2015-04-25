@@ -135,6 +135,28 @@ public class QuestionDaoImpl implements QuestionDao{
 		
 	}
 
+	@Override
+	public boolean updateQuestion(Question question) {
+		// TODO Auto-generated method stub
+		try {
+			Configuration config = new Configuration().configure();
+			@SuppressWarnings("deprecation")
+			SessionFactory sessionFactory = config.buildSessionFactory();
+			Session session=sessionFactory.openSession();
+			Transaction tx=session.beginTransaction();
+			session.update(question);
+			tx.commit();
+			session.close();
+			sessionFactory.close();
+			
+			System.out.println("question updated successfully");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 
 
 }

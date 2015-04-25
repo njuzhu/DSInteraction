@@ -11,7 +11,7 @@
                     <li><a><span class="glyphicon glyphicon-question-sign"></span>题库</a> 
                         <ul> 
                             <li><a href="<%=request.getContextPath()+"/view/questionList"%>">选择题</a></li>  
-                            <li><a href="RacingListView.jsp">赛车视频</a></li> 
+                            <li><a href="<%=request.getContextPath()+"/view/raceList"%>">赛车视频</a></li> 
                         </ul> 
                     </li> 
                     <li><a><span class="glyphicon glyphicon-cog"></span>管理</a> 

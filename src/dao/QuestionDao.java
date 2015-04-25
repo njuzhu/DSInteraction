@@ -11,5 +11,6 @@ public interface QuestionDao {
     public List<Question> getQuestionSearchList(String keyword);
 	public void deleteQuestion(Question question);
 	public int addQuestion(Question question);
+	public boolean updateQuestion(Question question);
 }
 

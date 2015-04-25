@@ -72,4 +72,10 @@ public class QuestionServiceImpl implements QuestionService{
 		return questionDao.addQuestion(question);
 	}
 
+	@Override
+	public boolean updateQuestion(Question question) {
+		// TODO Auto-generated method stub
+		return questionDao.updateQuestion(question);
+	}
+
 }

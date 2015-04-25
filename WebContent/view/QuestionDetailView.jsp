@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="bottom clearfix">
                          <div class="edit">
-                            <a href="" data-toggle="tooltip" data-placement="right" title="编辑"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="<%=request.getContextPath()+"/view/editQuestion?question_id="+ques_id%>" data-toggle="tooltip" data-placement="right" title="编辑"><span class="glyphicon glyphicon-pencil"></span></a>
                          </div>
                     </div>
                 </fieldset>

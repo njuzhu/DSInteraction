@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +16,7 @@ public class Answer {
 	private String upload;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}

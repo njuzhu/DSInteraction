@@ -1,6 +1,11 @@
+<%@page import="model.Question"%>
+<%@page import="model.Answer"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" import="java.util.*"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +23,7 @@
         <div class="banner">
             <ol class="breadcrumb">
                 <li class="active">题库</li>
-                <li><a href="QuestionListView.jsp">选择题</a></li>
+                <li><a href="<%=request.getContextPath()+"/view/questionList"%>">选择题</a></li>
                 <li class="active">新建选择题</li>
             </ol>
             <div class="search">
@@ -35,6 +40,86 @@
         <div class="wrap">
             <div class="list">
                 <div class="create_wrap clearfix">
+                <%if((request.getParameter("edit")!=null)&&(Integer.parseInt(request.getParameter("edit")) == 1)) {
+                	Question question = (Question)session.getAttribute("question"); 
+                	List<Answer> answers = (List<Answer>)session.getAttribute("answers");
+                	int question_id = question.getId();
+                	request.setAttribute("uploadFileName", question.getUpload());
+                %>
+                <%//编辑页面 start %>
+                <form action="saveQuestion" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<%=question_id%>" name="question.id">
+                <fieldset>
+                    <legend>问题</legend>
+                        <div class="q-content clearfix">
+                            <div class="fl">
+                                <span class="title">题目：</span>
+                                <span>
+                                    <textarea style="width: 509px;height:100px" name="question.content" required="required"><%=question.getContent()%>
+                                    </textarea>
+                                </span>
+                            </div>
+                            <div class="fr">
+                                <p>
+                                    <span class="title">题目名称：</span>
+                                    <span><input type="text" name="question.keyword" required="required" value="<%=question.getKeyword()%>"/></span>
+                                </p>
+                                <p>
+                                    <span class="title">播放时长：</span>
+                                    <span><input type="text" class="my-text" name="question.duration" required="required" value="<%=question.getDuration()%>"/></span>
+                                    <span>s</span>
+                                </p>
+                            </div>
+                            <div class="file-box">
+                                 <input type="button" value="上传图片" class="my-button photo">
+                                 <input type="file" name="upload" class="file" onchange="viewQimg(this)"/> 
+                                 <div id="sig_preview" class="img-preview">
+                                 <%if(question.getUpload() != null){ %>
+                                     <img id=imghead border=0 width=138 height=100 src="<%=basePath %>upload/<%=question.getUpload() %>">
+                                     <%} %>
+                                 </div>
+                                    
+                                 <!--  <input type="button" value="上传视频" class="my-button video" name="video">-->
+                             </div>
+                        </div>
+                </fieldset>
+                <fieldset style="margin-top:30px">
+                    <legend>答案</legend>
+                        <%for(int i=0; i<answers.size(); i++){   
+                            Answer answer = answers.get(i); 
+                            String choice = answer.getContent().substring(0,1);
+                            int answer_id = answer.getId();
+                            request.setAttribute("upload"+answer.getContent().substring(0,1)+"FileName", answer.getUpload());
+                            %>
+                        <input type="hidden" name="answer<%=choice %>.id" value="<%=answer_id %>">
+                        <div class="each-answer">
+                            <input type="text" name="answer<%=choice %>.content" readonly="true" value="<%=answer.getContent().substring(0,2) %>" class="choice"/>
+                            <textarea style="width: 507px;height:60px" name="answer<%=choice %>.content" required="required"><%=answer.getContent().substring(2) %></textarea>
+                            <div class="right-ans">
+                                <input type="radio" name="radio" value="answer<%=choice %>" 
+                                <%if(answer.getIsRight() == 1){ %>checked <%} %>>正确答案
+                            </div>
+                            <div class="picture">
+                                <input type="button" value="上传图片" class="my-button">
+                            </div>
+                            <div class="file">
+                                <input type="file" class="my-button j-anw-img" name="upload<%=choice %>"/> 
+                            </div>
+                            <div class="img-preview">
+                                <%if(answer.getUpload() != null){ %>
+                                    <img class="imghead" border=0 width=90 height=60 src="<%=basePath %>upload/<%=answer.getUpload() %>">
+                                <%} %>
+                            </div>
+                        </div>
+                        <%} %>
+                </fieldset>
+                <div class="save-cancel">
+                    <input type="submit" value="保存修改" class="my-button">
+                    <a class="cancel" href="<%=request.getContextPath()+"/view/questionList"%>">取消</a>
+                </div>
+                </form>
+                <%//编辑页面 end %>
+                <%} else {%>
                 <form action="addQuestion" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>问题</legend>
@@ -134,9 +219,10 @@
                 </fieldset>
                 <div class="save-cancel">
                     <input type="submit" value="保存" class="my-button">
-                    <input type="reset" value="取消" class="my-button">
+                    <input type="reset" value="重置" class="my-button">
                 </div>
                 </form>
+                <%} %>
                 </div>
             </div>
         </div>
@@ -151,11 +237,8 @@ function viewQimg(file){
         reader.readAsDataURL(file.files[0]);
         reader.onload = function(evt){
         	img.src = evt.target.result;
-        	file.files[0].name = evt.target.result
         	//alert(file.files[0].name+file.files[0].size+file.files[0].type);
         }
-        
-        
 	}else {//兼容IE
         var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
         file.select();
