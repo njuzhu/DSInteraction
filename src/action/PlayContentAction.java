@@ -3,8 +3,6 @@ package action;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
@@ -12,12 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.avro.io.JsonEncoder;
 import org.json.JSONArray;
-
-import bsh.Console;
-
-import com.thoughtworks.xstream.converters.extended.CharsetConverter;
 
 import model.Answer;
 import model.Cinema;
@@ -26,7 +19,6 @@ import model.FilmSchedule;
 import model.PlayList;
 import model.Question;
 import model.Race;
-import model.User;
 import service.AnswerService;
 import service.CinemaHallService;
 import service.CinemaService;
@@ -269,7 +261,8 @@ public class PlayContentAction extends BaseAction{
 		List<TempInfo> tempInfos = rankingAction.tempInfos;
 		List dataList = new ArrayList<>();		
 		
-		for(int i = 0;i < 5;i++){
+//		for(int i = 0;i < 5;i++){
+		for(int i = 1;i < 6;i++){
 			Map map = new HashMap<>();
 //			TempInfo tmpInfo = tempInfos.get(i); 
 //			int uid = tmpInfo.getUid();
@@ -277,7 +270,7 @@ public class PlayContentAction extends BaseAction{
 //			
 //			User user = userService.getUserInfo(uid);
 //			String image = user.getImage();
-			String image = "icon" + i + ".png";
+			String image = "../images/icon" + (5-i) + ".jpg";
 			int score = i;
 			
 			map.put("usr_img", image);

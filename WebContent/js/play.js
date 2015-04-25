@@ -417,8 +417,8 @@
 				
 			});
 			
-			console.debug(usr_images);
-			console.debug(usr_scores);
+//			console.debug(usr_images);
+//			console.debug(usr_scores);
 			
 			for (var i = 1; i < 6; i++) {
 				changeRank(i,usr_images[i-1]);
@@ -445,10 +445,9 @@
 	    if(usr_old != user_img){
 	        hide();
 	        if(interval2){
-	            
+	        	$("" + ele + ">.logo").attr("src",user_img);
 	        }        
 	    }
-	    //$("" + ele + ">.logo").attr("src",user_img);
 	}
 	
 	//**************************************************总排名部分***************************************************
