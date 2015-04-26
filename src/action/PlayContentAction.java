@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONArray;
 
@@ -19,6 +21,7 @@ import model.FilmSchedule;
 import model.PlayList;
 import model.Question;
 import model.Race;
+import model.User;
 import service.AnswerService;
 import service.CinemaHallService;
 import service.CinemaService;
@@ -38,12 +41,16 @@ public class PlayContentAction extends BaseAction{
 	private QuestionService questionService;
 	private AnswerService answerService;
 	private RaceService raceService;
-	private UserService userService;
+	private static UserService userService;
 	
-	private RankingAction rankingAction;
+	private static RankingAction rankingAction;
 	private String cinemaName;
 	private String hallName;
 	private String period;
+	
+	private Timer timer = new Timer();
+	private static String imageString[] = {"icon4.jpg","icon2.jpg","icon3.jpg","icon.jpg","icon1.jpg"};
+	private static String imageString2[] = {"icon1.jpg","icon3.jpg","icon4.jpg","icon2.jpg","icon.jpg"};
 	
 	//查找所有电影院的名称
 	public String searchAllCinemas(){
@@ -258,27 +265,18 @@ public class PlayContentAction extends BaseAction{
 	
 	//获取排名,显示前5名
 	public void rank(){
-		List<TempInfo> tempInfos = rankingAction.tempInfos;
 		List dataList = new ArrayList<>();		
 		
-//		for(int i = 0;i < 5;i++){
-		for(int i = 1;i < 6;i++){
-			Map map = new HashMap<>();
-//			TempInfo tmpInfo = tempInfos.get(i); 
-//			int uid = tmpInfo.getUid();
-//			int score = tmpInfo.getScore();
-//			
-//			User user = userService.getUserInfo(uid);
-//			String image = user.getImage();
-			String image = "../images/icon" + (5-i) + ".jpg";
-			int score = i;
+		for(int i = 0; i <5; i++){
+			Map map = new HashMap<>();			
+			String image = "../../DSInteraction/images/" + imageString[i];
 			
 			map.put("usr_img", image);
-			map.put("usr_score", score);
 			
 			dataList.add(map);
-		}
-				
+		}		
+		
+		System.out.println(imageString[0] + imageString[1] + imageString[2] +imageString[3] +imageString[4]);	
 		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
 		
 		try {
@@ -286,6 +284,70 @@ public class PlayContentAction extends BaseAction{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	//4秒后，更新数据
+	public void startTimer(){
+		timer.schedule(new MyTask(),4000);
+		
+		System.out.println("start timer successfully!");
+	}
+	
+	//获得最终排名
+	public void finalRank(){
+		timer.cancel();
+		System.out.println("rank timer end!");
+		
+		List dataList = new ArrayList<>();
+		
+		String nameFinal[] = {"SUN","MOON","STAR","FLY","DINGDONG"};
+		String imageFinal[] = {"icon4.jpg","icon3.jpg","icon2.jpg","icon1.jpg","icon.jpg"};
+		int scoreFinal[] = {50,40,30,20,10};
+		
+		for(int i=0;i < 5;i++){
+			Map map = new HashMap<>();
+			
+			int score = scoreFinal[i];
+			String name = nameFinal[i];
+			String image = "../../DSInteraction/images/" + imageFinal[i];
+			
+			map.put("user_name", name);
+			map.put("user_image", image);
+			map.put("user_score", score);
+			
+			dataList.add(map);
+		}
+		
+//		List<TempInfo> tempInfos = rankingAction.tempInfos;
+//		List dataList = new ArrayList<>();		
+//		
+//		for(int i = 0;i < 5;i++){
+//			Map map = new HashMap<>();
+//			TempInfo tmpInfo = tempInfos.get(i);
+//			
+//			int score = tmpInfo.getScore();
+//			int uid = tmpInfo.getUid();			
+//			User user = userService.getUserInfo(uid);
+//			String name = user.getName();
+//			String image = "../../DSInteraction/images/" + user.getImage();
+//			
+//			map.put("user_name", name);
+//			map.put("user_image", image);
+//			map.put("user_score", score);
+//			
+//			dataList.add(map);
+//			
+//		}
+		
+		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
+		
+		try {
+			this.response().getWriter().write(jArray.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
 	}
 	
 	public String formatDuration(int duration){
@@ -426,4 +488,26 @@ public class PlayContentAction extends BaseAction{
 		this.userService = userService;
 	}
 
+	static class MyTask extends TimerTask {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			imageString = imageString2;
+			System.out.println("update rank data!");
+			
+//			List<TempInfo> tempInfos = rankingAction.tempInfos;
+//			
+//			for(int i = 0;i < 5;i++){
+//				TempInfo tmpInfo = tempInfos.get(i); 
+//				int uid = tmpInfo.getUid();
+//				
+//				User user = userService.getUserInfo(uid);
+//				String image = user.getImage();
+//				imageString[i] = image;
+//			}
+			
+		}
+		
+	}
 }

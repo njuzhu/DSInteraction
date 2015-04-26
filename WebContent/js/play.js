@@ -12,6 +12,7 @@
 				setTimeout("loadQuestions()",8000);
 			}else{
 				setTimeout("loadRace()",8000);
+				setTimeout("startRankTimer()",8000);				
 			}
 			
 		});
@@ -107,6 +108,7 @@
 			
         });
 	}
+	
 	//***********************************************游戏开始提示部分***********************************************************
 	var time0 = 5;
 	var timer2;
@@ -153,6 +155,13 @@
 	//***********************************************赛车视频部分***********************************************************
 	var timer3;
 	var timer4;
+	
+	//打开实时排名定时器
+	function startRankTimer(){
+		$.get("/DSInteraction/view/startTimer",function(data){	
+			console.debug("rank timer start!");
+		});
+	}
 	
 	//加载视频
 	function loadRace(){
@@ -353,22 +362,22 @@
 	var usr_rank;
 	var new_usr_img;
 	var usr_images = [];
-	var usr_scores = [];
+	//var usr_scores = [];
 
 	//新图片渐现
 	function show()  
 	{  
-	    if(interval2) {  
-	         //这里是为了当鼠标在Div渐隐的过程中移到Div上图片立即慢慢重现  
-	        clearInterval(interval2);  
-	    }  
+//	    if(interval2) {  
+//	         //这里是为了当鼠标在Div渐隐的过程中移到Div上图片立即慢慢重现  
+//	        clearInterval(interval2);  
+//	    }  
 	    i = $(usr_rank).css("opacity")*100;  
 	    interval1 = setInterval("showRound()",20);  
 	};  
 
 	function showRound()  
 	{  
-	    i++;  
+	    i=i+10;  
 	    var usr_logo = $(usr_rank);  
 
 	    if(usr_logo.css("opacity") != 1.0) {  
@@ -383,17 +392,17 @@
 	//原图片渐隐 
 	function hide()  
 	{  
-	    if(interval1) {  
-	         //这里是为了当鼠标在Div渐现的过程中从Div上移走图片立即慢慢消失  
-	        clearInterval(interval1);  
-	    }  
+//	    if(interval1) {  
+//	         //这里是为了当鼠标在Div渐现的过程中从Div上移走图片立即慢慢消失  
+//	        clearInterval(interval1);  
+//	    }  
 	    j = $(usr_rank).css("opacity")*100;  
 	    interval2 = setInterval("hideRound()",10);  
 	}; 
 
 	function hideRound()  
 	{  
-	    j--; 
+	    j=j-10; 
 	    var usr_logo = $(usr_rank);  
 
 	    if(usr_logo.css("opacity") != 0.0) {  
@@ -408,24 +417,27 @@
 	};  
 
 	function readData(){
+		console.debug("yes, i'm reading data!");
+		
 		$.get("/DSInteraction/view/getRank",function(data){
 			var rankData = JSON.parse(data);
 			
 			$.each(JSON.parse(data),function(i,item){
 				usr_images.push(item.usr_img);
-				usr_scores.push(item.usr_score);
+				//usr_scores.push(item.usr_score);
 				
 			});
 			
-//			console.debug(usr_images);
-//			console.debug(usr_scores);
+			//console.debug(usr_images);
 			
-			for (var i = 1; i < 6; i++) {
-				changeRank(i,usr_images[i-1]);
-			}
-			clearData();
+			changeRank(1,usr_images[0]);
+			setTimeout(function(){changeRank(2,usr_images[1]);},800);
+			setTimeout(function(){changeRank(3,usr_images[2]);},1600);
+			setTimeout(function(){changeRank(4,usr_images[3]);},2400);
+			setTimeout(function(){changeRank(5,usr_images[4]);},3200);
 			
-			timer4 = setInterval("readData()",4000);
+			setTimeout("clearData()",8000);
+			setTimeout("readData()",8000);
 		
 		});
 		
@@ -433,96 +445,123 @@
 	
 	function clearData(){
 		usr_images.length = 0;
-		usr_scores.length = 0;
 	}
 
 	//排名修改，参数为名次，用户头像
 	function changeRank(rank,user_img){
+		//console.debug("rank:" + rank +" user_img:" + user_img);
+		
 	    usr_rank = '#rank' + rank + ">.logo";
 	    new_usr_img = user_img;
 	    var usr_old = $(usr_rank).attr("src");
 
 	    if(usr_old != user_img){
 	        hide();
-	        if(interval2){
-	        	$("" + ele + ">.logo").attr("src",user_img);
-	        }        
+//	        $(usr_rank).attr("src",user_img);
+//            show();
+	        //if(interval2){
+	        //	$(usr_rank).attr("src",user_img);
+	        //}        
 	    }
 	}
 	
 	//**************************************************总排名部分***************************************************
 	function loadRankList(){
-		$("body").empty();
-		$("body").addClass("nightMode");
+		getFinalRankData();
+		
+//		$("body").empty();
+//		$("body").addClass("nightMode");
+//
+//		var rank_div = $("<div class='rankList'></div>");
+//		var rank_title = $("<h1>排名榜</h1>");
+//		var rank_ul = $("<ul type='none'></ul>");
 
-		var rank_div = $("<div class='rankList'></div>");
-		var rank_title = $("<h1>排名榜</h1>");
-		var rank_ul = $("<ul type='none'></ul>");
+//		var rank_li1 = $("<li><span><img class='crown' src='../../DSInteraction/images/crown.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+//		var rank_li2 = $("<li><span><img src='../../DSInteraction/images/2.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+//		var rank_li3 = $("<li><span><img src='../../DSInteraction/images/3.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+//		var rank_li4 = $("<li><span><img src='../../DSInteraction/images/4.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+//		var rank_li5 = $("<li><span><img src='../../DSInteraction/images/5.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
 
-		var rank_li1 = $("<li><span><img class='crown' src='../../DSInteraction/images/crown.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
-		var rank_li2 = $("<li><span><img src='../../DSInteraction/images/2.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
-		var rank_li3 = $("<li><span><img src='../../DSInteraction/images/3.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
-		var rank_li4 = $("<li><span><img src='../../DSInteraction/images/4.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
-		var rank_li5 = $("<li><span><img src='../../DSInteraction/images/5.png' /></span><span class='userName'>pilipala</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
+//		rank_ul.append(rank_li1);
+//		rank_ul.append(rank_li2);
+//		rank_ul.append(rank_li3);
+//		rank_ul.append(rank_li4);
+//		rank_ul.append(rank_li5);
 
-		rank_ul.append(rank_li1);
-		rank_ul.append(rank_li2);
-		rank_ul.append(rank_li3);
-		rank_ul.append(rank_li4);
-		rank_ul.append(rank_li5);
+//		rank_div.append(rank_title);
+//		rank_div.append(rank_ul);
+//
+//		$("body").append(rank_div);
 
-		rank_div.append(rank_title);
-		rank_div.append(rank_ul);
+		//startFirework();
+	}
+	
+	function getFinalRankData(){
+		$.get("/DSInteraction/view/getFinalRank",function(data){
+			$("body").empty();
+			$("body").addClass("nightMode");
 
-		$("body").append(rank_div);
+			var rank_div = $("<div class='rankList'></div>");
+			var rank_title = $("<h1>排名榜</h1>");
+			var rank_ul = $("<ul type='none'></ul>");
+			
+			$.each(JSON.parse(data),function(i,item){
+				var rank_icon = "<img class='crown' src='../../DSInteraction/images/" + (i+1) + ".png' />";
+				var rank_li = $("<li><span>" + rank_icon + "</span><span class='userName'>" + item.user_name + "</span><span class='userImage'><img class='logo' src='" + item.user_image + "' /></span><span class='userScore'>" + item.user_score + "</span></li>");
+				rank_ul.append(rank_li);
+			});
+			
+			rank_div.append(rank_title);
+			rank_div.append(rank_ul);
 
-		startFirework();
+			$("body").append(rank_div);
+		});
 	}
 
-	function startFirework(){
-
-	    var fireworks=[];
-
-	    var total=15;
-
-	    window.setInterval(function(){
-
-	        for (var i = 0; i < total; i++) {
-
-	            if (!fireworks[i] || !fireworks[i].parentElement) {
-
-	                var x=Utils.getIntervalRandom(50,document.body.offsetWidth-50);
-
-	                var shotHeight=Utils.getIntervalRandom(100,450);
-
-	                var radius=Utils.getIntervalRandom(50,200);
-
-	                var particleCount=Utils.getIntervalRandom(40,80);
-
-	                var speed=Utils.getIntervalRandom(10,20);
-
-	                var color="#"+Utils.getIntervalRandom(0,16777215).toString(16).padLeft(6,"f");
-
-	                fireworks[i] = new Firework(x, shotHeight, radius, particleCount, color, speed);
-
-	            }
-
-	        }
-
-	    },100);
-
-	    
-
-	    window.setInterval(function(){
-
-	        var currentIndex=Utils.getIntervalRandom(0,total);
-
-	        if(fireworks[currentIndex] && fireworks[currentIndex].parentElement && !fireworks[currentIndex].isShoted){
-
-	            fireworks[currentIndex].shot();
-
-	        }
-
-	    },500);
-
-	}
+//	function startFirework(){
+//
+//	    var fireworks=[];
+//
+//	    var total=15;
+//
+//	    window.setInterval(function(){
+//
+//	        for (var i = 0; i < total; i++) {
+//
+//	            if (!fireworks[i] || !fireworks[i].parentElement) {
+//
+//	                var x=Utils.getIntervalRandom(50,document.body.offsetWidth-50);
+//
+//	                var shotHeight=Utils.getIntervalRandom(100,450);
+//
+//	                var radius=Utils.getIntervalRandom(50,200);
+//
+//	                var particleCount=Utils.getIntervalRandom(40,80);
+//
+//	                var speed=Utils.getIntervalRandom(10,20);
+//
+//	                var color="#"+Utils.getIntervalRandom(0,16777215).toString(16).padLeft(6,"f");
+//
+//	                fireworks[i] = new Firework(x, shotHeight, radius, particleCount, color, speed);
+//
+//	            }
+//
+//	        }
+//
+//	    },100);
+//
+//	    
+//
+//	    window.setInterval(function(){
+//
+//	        var currentIndex=Utils.getIntervalRandom(0,total);
+//
+//	        if(fireworks[currentIndex] && fireworks[currentIndex].parentElement && !fireworks[currentIndex].isShoted){
+//
+//	            fireworks[currentIndex].shot();
+//
+//	        }
+//
+//	    },500);
+//
+//	}

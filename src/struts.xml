@@ -33,7 +33,13 @@
 		<action name="findPlayList" class="PlayContentAction" method="searchPlayList">
 		</action>
 		
+		<action name="startTimer" class="PlayContentAction" method="startTimer">
+		</action>
+		
 		<action name="getRank" class="PlayContentAction" method="rank">
+		</action>
+		
+		<action name="getFinalRank" class="PlayContentAction" method="finalRank">
 		</action>
 		
 		<action name="findUsers" class="PointAction" method="searchUsers">
