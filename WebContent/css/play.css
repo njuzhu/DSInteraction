@@ -277,6 +277,13 @@ img.rankNO{
 	max-height: 65px;
 }
 
+.rankList .final_rank{
+	display: inline-block;
+ 	width: 200px;
+  	margin-right: 0;
+  	text-align: left;
+}
+
 .nightMode{
 	background-color:black;
 }
