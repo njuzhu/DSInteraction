@@ -422,6 +422,7 @@
 		
 		$.get("/DSInteraction/view/getRank",function(data){
 			var rankData = JSON.parse(data);
+			var rankLength = rankData.length;
 			
 			$.each(JSON.parse(data),function(i,item){
 				usr_images.push(item.usr_img);
@@ -429,14 +430,24 @@
 				
 			});
 			
-			//console.debug(usr_images);
+			console.debug(rankLength);
 			
-			changeRank(1,usr_images[0]);
-			setTimeout(function(){changeRank(2,usr_images[1]);},800);
-			setTimeout(function(){changeRank(3,usr_images[2]);},1600);
-			setTimeout(function(){changeRank(4,usr_images[3]);},2400);
-			setTimeout(function(){changeRank(5,usr_images[4]);},3200);
-			
+			if(rankLength >= 1){
+				changeRank(1,usr_images[0]);
+			}
+			if(rankLength >= 2){
+				setTimeout(function(){changeRank(2,usr_images[1]);},800);
+			}
+			if(rankLength >= 3){
+				setTimeout(function(){changeRank(3,usr_images[2]);},1600);			
+			}
+			if(rankLength >= 4){
+				setTimeout(function(){changeRank(4,usr_images[3]);},2400);
+			}
+			if(rankLength >= 5){
+				setTimeout(function(){changeRank(5,usr_images[4]);},3200);
+			}
+
 			setTimeout("clearData()",8000);
 			setTimeout("readData()",8000);
 		
