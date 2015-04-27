@@ -171,7 +171,8 @@
 		/*var ele = $("<div style='position:absolute;top:0px;left:0px;width:100%;height:100%;background-color:#EEE;z-index:1000'></div>"); */
 		var ele = $("<div></div>");
 
-		var left = $("<div id = 'left'><canvas id='tip' width='500' height='450'></canvas><div id = 'left2'><div class='rank_container'><div id='rank1' class='rank'><img class='top' src='../../DSInteraction/images/1.png' /><img id='test' class='logo' src='../../DSInteraction/images/icon.jpg' /></div><div id='rank2' class='rank'><img class='rankNO' src='../../DSInteraction/images/2.png' /><img class='logo' src='../../DSInteraction/images/icon1.jpg' /></div><div id='rank3' class='rank'><img class='rankNO' src='../../DSInteraction/images/3.png' /><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></div><div id='rank4' class='rank'><img class='rankNO' src='../../DSInteraction/images/4.png' /><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></div><div id='rank5' class='rank'><img class='rankNO' src='../../DSInteraction/images/5.png' /><img class='logo' src='../../DSInteraction/images/icon4.jpg' /></div></div></div></div>");
+		var left = $("<div id = 'left'><canvas id='tip' width='500' height='450'></canvas><div id = 'left2'><div class='rank_container'><div id='rank1' class='rank'><img class='top' src='../../DSInteraction/images/1.png' /><img id='test' class='logo' src='../../DSInteraction/images/icon2.jpg' /></div><div id='rank2' class='rank'><img class='rankNO' src='../../DSInteraction/images/2.png' /><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></div></div></div></div>");
+		//var left = $("<div id = 'left'><canvas id='tip' width='500' height='450'></canvas><div id = 'left2'><div class='rank_container'><div id='rank1' class='rank'><img class='top' src='../../DSInteraction/images/1.png' /><img id='test' class='logo' src='../../DSInteraction/images/icon.jpg' /></div><div id='rank2' class='rank'><img class='rankNO' src='../../DSInteraction/images/2.png' /><img class='logo' src='../../DSInteraction/images/icon1.jpg' /></div><div id='rank3' class='rank'><img class='rankNO' src='../../DSInteraction/images/3.png' /><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></div><div id='rank4' class='rank'><img class='rankNO' src='../../DSInteraction/images/4.png' /><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></div><div id='rank5' class='rank'><img class='rankNO' src='../../DSInteraction/images/5.png' /><img class='logo' src='../../DSInteraction/images/icon4.jpg' /></div></div></div></div>");
 		var right = $("<div id = 'right'><video id='raceVideo' src='../../DSInteraction/video/raceVideo.webm' autoplay='autoplay' height='100%'></video></div>") ;
 
 		ele.append(left);
@@ -516,17 +517,17 @@
 		var rank_title = $("<h1>排名榜</h1>");
 		var rank_ul = $("<ul type='none'></ul>");
 
-		var rank_li1 = $("<li><span class='final_rank'><img class='crown' src='../../DSInteraction/images/1.png' /></span><span class='userName'>SUN</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon.jpg' /></span><span class='userScore'>100</span></li>");
-		var rank_li2 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/2.png' /></span><span class='userName'>STAR</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon1.jpg' /></span><span class='userScore'>80</span></li>");
-		var rank_li3 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/3.png' /></span><span class='userName'>MOON</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></span><span class='userScore'>70</span></li>");
-		var rank_li4 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/4.png' /></span><span class='userName'>DAY</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></span><span class='userScore'>60</span></li>");
-		var rank_li5 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/5.png' /></span><span class='userName'>WHY</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon4.jpg' /></span><span class='userScore'>50</span></li>");
+		var rank_li1 = $("<li><span class='final_rank'><img class='crown' src='../../DSInteraction/images/1.png' /></span><span class='userName'>zhu</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></span><span class='userScore'>200</span></li>");
+		var rank_li2 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/2.png' /></span><span class='userName'>zhao</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></span><span class='userScore'>100</span></li>");
+//		var rank_li3 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/3.png' /></span><span class='userName'>MOON</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon3.jpg' /></span><span class='userScore'>70</span></li>");
+//		var rank_li4 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/4.png' /></span><span class='userName'>DAY</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon2.jpg' /></span><span class='userScore'>60</span></li>");
+//		var rank_li5 = $("<li><span class='final_rank'><img src='../../DSInteraction/images/5.png' /></span><span class='userName'>WHY</span><span class='userImage'><img class='logo' src='../../DSInteraction/images/icon4.jpg' /></span><span class='userScore'>50</span></li>");
 
 		rank_ul.append(rank_li1);
 		rank_ul.append(rank_li2);
-		rank_ul.append(rank_li3);
-		rank_ul.append(rank_li4);
-		rank_ul.append(rank_li5);
+//		rank_ul.append(rank_li3);
+//		rank_ul.append(rank_li4);
+//		rank_ul.append(rank_li5);
 
 		rank_div.append(rank_title);
 		rank_div.append(rank_ul);

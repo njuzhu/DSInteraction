@@ -49,8 +49,11 @@ public class PlayContentAction extends BaseAction{
 	private String period;
 	
 	private Timer timer = new Timer();
-	private static String imageString[] = {"icon4.jpg","icon2.jpg","icon3.jpg","icon.jpg"};
-	private static String imageString2[] = {"icon1.jpg","icon3.jpg","icon4.jpg","icon2.jpg"};
+	public static List<TempInfo> tempInfoList;
+	private static List<String> imageString = new ArrayList<String>();
+	//private static String imageString[] = {"","","","",""};
+	//private static String imageString[] = {"icon4.jpg","icon2.jpg","icon3.jpg","icon.jpg"};
+	//private static String imageString2[] = {"icon1.jpg","icon3.jpg","icon4.jpg","icon2.jpg"};
 	
 	//查找所有电影院的名称
 	public String searchAllCinemas(){
@@ -266,11 +269,11 @@ public class PlayContentAction extends BaseAction{
 	//获取排名,显示前5名
 	public void rank(){
 		List dataList = new ArrayList<>();		
-		int rankLength = imageString.length;
+		int rankLength = imageString.size();
 		
 		for(int i = 0; i < rankLength; i++){
 			Map map = new HashMap<>();			
-			String image = "../../DSInteraction/images/" + imageString[i];
+			String image = "../../DSInteraction/images/" + imageString.get(i);
 			
 			map.put("usr_img", image);
 			
@@ -290,8 +293,8 @@ public class PlayContentAction extends BaseAction{
 	
 	//4秒后，更新数据
 	public void startTimer(){
-		timer.schedule(new MyTask(),4000);
-		
+		//timer.schedule(new MyTask(),4000);
+		timer.scheduleAtFixedRate(new MyTask2(), 0, 5000);
 		System.out.println("start timer successfully!");
 	}
 	
@@ -320,32 +323,35 @@ public class PlayContentAction extends BaseAction{
 //			dataList.add(map);
 //		}
 		
-		List<TempInfo> tempInfos = rankingAction.tempInfos;
 		List dataList = new ArrayList<>();		
 		
-		int tempSize = tempInfos.size();
+		
+		List<TempInfo> tempInfoList2 = tempInfoList;
+		int tempSize = tempInfoList2.size();
 		int rankNum = 5;
 		
 		if(tempSize < rankNum){
 			rankNum = tempSize;
 		}
 		
-		for(int i = 0;i < rankNum;i++){
-			Map map = new HashMap<>();
-			TempInfo tmpInfo = tempInfos.get(i);
-			
-			int score = tmpInfo.getScore();
-			int uid = tmpInfo.getUid();			
-			User user = userService.getUserInfo(uid);
-			String name = user.getName();
-			String image = "../../DSInteraction/images/" + user.getImage();
-			
-			map.put("user_name", name);
-			map.put("user_image", image);
-			map.put("user_score", score);
-			
-			dataList.add(map);
-			
+		if(rankNum > 0){
+			for(int i = 0;i < rankNum;i++){
+				Map map = new HashMap<>();
+				TempInfo tmpInfo = tempInfoList2.get(i);
+				
+				int score = tmpInfo.getScore();
+				int uid = tmpInfo.getUid();			
+				User user = userService.getUserInfo(uid);
+				String name = user.getName();
+				String image = "../../DSInteraction/images/" + user.getImage();
+				
+				map.put("user_name", name);
+				map.put("user_image", image);
+				map.put("user_score", score);
+				
+				dataList.add(map);
+				
+			}
 		}
 		
 		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
@@ -496,31 +502,36 @@ public class PlayContentAction extends BaseAction{
 		this.userService = userService;
 	}
 
-	static class MyTask extends TimerTask {
+	static class MyTask2 extends TimerTask {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 //			imageString = imageString2;
-//			System.out.println("update rank data!");
+			System.out.println("update rank data!");
 			
-			List<TempInfo> tempInfos = rankingAction.tempInfos;
-			int tempSize = tempInfos.size();
-			int rankNum = 5;
-			
-			if(tempSize < rankNum){
-				rankNum = tempSize;
-			}
-			
-			for(int i = 0;i < rankNum;i++){
-				TempInfo tmpInfo = tempInfos.get(i); 
-				int uid = tmpInfo.getUid();
+			if(rankingAction.tempInfos != null){
 				
-				User user = userService.getUserInfo(uid);
-				String image = user.getImage();
-				imageString[i] = image;
+				synchronized(tempInfoList = rankingAction.tempInfos){
+					imageString.clear();
+					
+					int tempSize = tempInfoList.size();
+					int rankNum = 5;
+					
+					if(tempSize < rankNum){
+						rankNum = tempSize;
+					}
+					
+					for(int i = 0;i < rankNum;i++){
+						TempInfo tmpInfo = tempInfoList.get(i); 
+						int uid = tmpInfo.getUid();
+						
+						User user = userService.getUserInfo(uid);
+						String image = user.getImage();
+						imageString.add(image);
+					}
+				}
 			}
-			
+		
 		}
 		
 	}
