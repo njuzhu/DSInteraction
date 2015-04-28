@@ -49,7 +49,8 @@ public class RankingAction extends BaseAction {
 			tempInfos = new ArrayList<TempInfo>();
 			// 计时器，在0秒后执行此任务,每次间隔4秒执行一次
 			timer = new Timer();
-			timer.schedule(new MyTask(), 0, 4000);
+			//timer.schedule(new MyTask(), 0, 4000);
+			timer.scheduleAtFixedRate(new MyTask(), 0, 4000);
 		}
 		
 		boolean exist = false;
@@ -75,7 +76,10 @@ public class RankingAction extends BaseAction {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			Collections.sort(tempInfos);
+			synchronized(tempInfos){
+				Collections.sort(tempInfos);
+			}
+			
 			for(int i = 0; i < tempInfos.size(); i++) {
 				TempInfo tempInfo = tempInfos.get(i);
 				System.out.println("MyTask-i:"+i);

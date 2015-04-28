@@ -3,21 +3,16 @@ package action;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import org.apache.avro.io.JsonEncoder;
 import org.json.JSONArray;
-
-import bsh.Console;
-
-import com.thoughtworks.xstream.converters.extended.CharsetConverter;
 
 import model.Answer;
 import model.Cinema;
@@ -46,12 +41,19 @@ public class PlayContentAction extends BaseAction{
 	private QuestionService questionService;
 	private AnswerService answerService;
 	private RaceService raceService;
-	private UserService userService;
+	private static UserService userService;
 	
-	private RankingAction rankingAction;
+	private static RankingAction rankingAction;
 	private String cinemaName;
 	private String hallName;
 	private String period;
+	
+	private Timer timer = new Timer();
+	public static List<TempInfo> tempInfoList;
+	private static List<String> imageString = new ArrayList<String>();
+	//private static String imageString[] = {"","","","",""};
+	//private static String imageString[] = {"icon4.jpg","icon2.jpg","icon3.jpg","icon.jpg"};
+	//private static String imageString2[] = {"icon1.jpg","icon3.jpg","icon4.jpg","icon2.jpg"};
 	
 	//查找所有电影院的名称
 	public String searchAllCinemas(){
@@ -266,26 +268,19 @@ public class PlayContentAction extends BaseAction{
 	
 	//获取排名,显示前5名
 	public void rank(){
-		List<TempInfo> tempInfos = rankingAction.tempInfos;
 		List dataList = new ArrayList<>();		
+		int rankLength = imageString.size();
 		
-		for(int i = 0;i < 5;i++){
-			Map map = new HashMap<>();
-//			TempInfo tmpInfo = tempInfos.get(i); 
-//			int uid = tmpInfo.getUid();
-//			int score = tmpInfo.getScore();
-//			
-//			User user = userService.getUserInfo(uid);
-//			String image = user.getImage();
-			String image = "icon" + i + ".png";
-			int score = i;
+		for(int i = 0; i < rankLength; i++){
+			Map map = new HashMap<>();			
+			String image = "../../DSInteraction/images/" + imageString.get(i);
 			
 			map.put("usr_img", image);
-			map.put("usr_score", score);
 			
 			dataList.add(map);
-		}
-				
+		}		
+		
+		//System.out.println(imageString[0] + imageString[1] + imageString[2] +imageString[3] +imageString[4]);	
 		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
 		
 		try {
@@ -293,6 +288,80 @@ public class PlayContentAction extends BaseAction{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	//4秒后，更新数据
+	public void startTimer(){
+		//timer.schedule(new MyTask(),4000);
+		timer.scheduleAtFixedRate(new MyTask2(), 0, 5000);
+		System.out.println("start timer successfully!");
+	}
+	
+	//获得最终排名
+	public void finalRank(){
+		timer.cancel();
+		System.out.println("rank timer end!");
+		
+//		List dataList = new ArrayList<>();
+//		
+//		String nameFinal[] = {"SUN","MOON","STAR","FLY","DINGDONG"};
+//		String imageFinal[] = {"icon4.jpg","icon3.jpg","icon2.jpg","icon1.jpg","icon.jpg"};
+//		int scoreFinal[] = {50,40,30,20,10};
+//		
+//		for(int i=0;i < 5;i++){
+//			Map map = new HashMap<>();
+//			
+//			int score = scoreFinal[i];
+//			String name = nameFinal[i];
+//			String image = "../../DSInteraction/images/" + imageFinal[i];
+//			
+//			map.put("user_name", name);
+//			map.put("user_image", image);
+//			map.put("user_score", score);
+//			
+//			dataList.add(map);
+//		}
+		
+		List dataList = new ArrayList<>();		
+		
+		
+		List<TempInfo> tempInfoList2 = tempInfoList;
+		int tempSize = tempInfoList2.size();
+		int rankNum = 5;
+		
+		if(tempSize < rankNum){
+			rankNum = tempSize;
+		}
+		
+		if(rankNum > 0){
+			for(int i = 0;i < rankNum;i++){
+				Map map = new HashMap<>();
+				TempInfo tmpInfo = tempInfoList2.get(i);
+				
+				int score = tmpInfo.getScore();
+				int uid = tmpInfo.getUid();			
+				User user = userService.getUserInfo(uid);
+				String name = user.getName();
+				String image = "../../DSInteraction/images/" + user.getImage();
+				
+				map.put("user_name", name);
+				map.put("user_image", image);
+				map.put("user_score", score);
+				
+				dataList.add(map);
+				
+			}
+		}
+		
+		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
+		
+		try {
+			this.response().getWriter().write(jArray.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
 	}
 	
 	public String formatDuration(int duration){
@@ -433,4 +502,37 @@ public class PlayContentAction extends BaseAction{
 		this.userService = userService;
 	}
 
+	static class MyTask2 extends TimerTask {
+
+		@Override
+		public void run() {
+//			imageString = imageString2;
+			System.out.println("update rank data!");
+			
+			if(rankingAction.tempInfos != null){
+				
+				synchronized(tempInfoList = rankingAction.tempInfos){
+					imageString.clear();
+					
+					int tempSize = tempInfoList.size();
+					int rankNum = 5;
+					
+					if(tempSize < rankNum){
+						rankNum = tempSize;
+					}
+					
+					for(int i = 0;i < rankNum;i++){
+						TempInfo tmpInfo = tempInfoList.get(i); 
+						int uid = tmpInfo.getUid();
+						
+						User user = userService.getUserInfo(uid);
+						String image = user.getImage();
+						imageString.add(image);
+					}
+				}
+			}
+		
+		}
+		
+	}
 }
