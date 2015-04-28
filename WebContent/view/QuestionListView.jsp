@@ -88,8 +88,8 @@
 	                                <td><%=name %></td>
 	                                <td><%=duration %></td>
 	                                <td><a href="<%=request.getContextPath()+"/view/showQuestionDetail?question_id="+question_id%>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-	                                <td><a href=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-	                                <td><a href=""><span class="glyphicon glyphicon-remove"></span></a></td>
+	                                <td><a href="<%=request.getContextPath()+"/view/editQuestion?question_id="+question_id%>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+	                                <td><a href="<%=request.getContextPath()+"/view/deleteQuestion?question_id="+question_id%>"><span class="glyphicon glyphicon-remove"></span></a></td>
 	                            </tr>
 	                        <%} %>
                         <%} %>

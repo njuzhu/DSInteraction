@@ -85,9 +85,9 @@
 	                                <td><%=race_id %></td>
 	                                <td><%=name %></td>
 	                                <td><%=duration %></td>
-	                                <td><a><span class="glyphicon glyphicon-eye-open"></span></a></td>
-	                                <td><a><span class="glyphicon glyphicon-pencil"></span></a></td>
-	                                <td><a><span class="glyphicon glyphicon-remove"></span></a></td>
+	                                <td><a href="<%=request.getContextPath()+"/view/showRaceDetail?race_id="+race_id%>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+	                                <td><a href="<%=request.getContextPath()+"/view/editRace?race_id="+race_id%>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+	                                <td><a href="<%=request.getContextPath()+"/view/deleteRace?race_id="+race_id%>"><span class="glyphicon glyphicon-remove"></span></a></td>
 	                            </tr>
 	                        <%} %>
                         <%} %>

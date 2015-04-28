@@ -88,7 +88,9 @@ public class QuestionSaveAction extends BaseAction{
 				savefile.getParentFile().mkdirs();
 			FileUtils.copyFile(file, savefile);
 			answer.setUpload(uploadName);
+			//System.out.println(uploadName);
 		} else {
+			//System.out.println(fileName);
 			answer.setUpload(fileName);
 		}
 	}
