@@ -30,6 +30,7 @@ import service.PlayListService;
 import service.QuestionService;
 import service.RaceService;
 import service.UserService;
+import z.mobile.action.QuestionRankingAction;
 import z.mobile.action.RankingAction;
 import z.mobile.model.TempInfo;
 
@@ -44,12 +45,14 @@ public class PlayContentAction extends BaseAction{
 	private static UserService userService;
 	
 	private static RankingAction rankingAction;
+	private static QuestionRankingAction questionRankingAction;
 	private String cinemaName;
 	private String hallName;
 	private String period;
 	
 	private Timer timer = new Timer();
 	public static List<TempInfo> tempInfoList;
+	private int gametype = 0;
 	private static List<String> imageString = new ArrayList<String>();
 	//private static String imageString[] = {"","","","",""};
 	//private static String imageString[] = {"icon4.jpg","icon2.jpg","icon3.jpg","icon.jpg"};
@@ -163,12 +166,15 @@ public class PlayContentAction extends BaseAction{
 		//编号、类型、关键字、时长
 		switch (playList.getGameType()) {
 		case 0:
+			gametype = 0;
 			dataList = searchQuestions(playList);
 			break;
 		case 1:
+			gametype = 1;
 			dataList = searchRaces(playList);
 			break;
 		case 2:
+			gametype = 2;
 			List questionList = searchQuestions(playList);
 			List raceList = searchRaces(playList);
 			
@@ -202,7 +208,7 @@ public class PlayContentAction extends BaseAction{
 		for (int i = 0; i < ids.length; i++) {
 			int id = Integer.parseInt(ids[i]);				
 			Question question = questionService.findQuestionById(id);
-			String questionContent = question.getContent();
+			String questionContent = question.getContent().substring(2);
 			String keyword = question.getKeyword();
 			int duration = question.getDuration();
 			String durationStr = formatDuration(duration);
@@ -303,30 +309,15 @@ public class PlayContentAction extends BaseAction{
 		timer.cancel();
 		System.out.println("rank timer end!");
 		
-//		List dataList = new ArrayList<>();
-//		
-//		String nameFinal[] = {"SUN","MOON","STAR","FLY","DINGDONG"};
-//		String imageFinal[] = {"icon4.jpg","icon3.jpg","icon2.jpg","icon1.jpg","icon.jpg"};
-//		int scoreFinal[] = {50,40,30,20,10};
-//		
-//		for(int i=0;i < 5;i++){
-//			Map map = new HashMap<>();
-//			
-//			int score = scoreFinal[i];
-//			String name = nameFinal[i];
-//			String image = "../../DSInteraction/images/" + imageFinal[i];
-//			
-//			map.put("user_name", name);
-//			map.put("user_image", image);
-//			map.put("user_score", score);
-//			
-//			dataList.add(map);
-//		}
+		List dataList = new ArrayList<>();	
+		List<TempInfo> tempInfoList2 = new ArrayList<>();	
+
+		if(gametype == 0){
+			tempInfoList2 = questionRankingAction.tempInfos;
+		}else if(gametype ==1){
+			tempInfoList2 = tempInfoList;
+		}
 		
-		List dataList = new ArrayList<>();		
-		
-		
-		List<TempInfo> tempInfoList2 = tempInfoList;
 		int tempSize = tempInfoList2.size();
 		int rankNum = 5;
 		
@@ -353,7 +344,7 @@ public class PlayContentAction extends BaseAction{
 				
 			}
 		}
-		
+
 		net.sf.json.JSONArray jArray = net.sf.json.JSONArray.fromObject(dataList); 
 		
 		try {
