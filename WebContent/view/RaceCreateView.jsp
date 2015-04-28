@@ -52,7 +52,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="r-content clearfix">
                             <span class="title">视频名称：</span>
                             <span><input type="text" name="race.name" value="<%=race.getName()%>"></span>
-                            <p style="margin-top:10px"><EMBED src="<%=basePath %>upload/<%=race.getContent() %>" autostart=false width="600" height="400"></EMBED></p>  
+                            <p style="margin-top:10px"><section id="player">
+				  <video id="media" width="320" height="240" controls> 
+				    <source src="<%=basePath %>upload/<%=race.getContent() %>">
+				  </video> 
+				</section></p>  
                             <p class="video">
                                 <input type="button" value="重新上传视频" class="my-button">
                                 <input type="file" name="upload" class="my-button file j-file-value"/> 
@@ -94,6 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="save-cancel">
                         <input type="submit" value="保存" class="my-button">
                         <input type="reset" value="重置" class="my-button">
+                        <a href="<%=request.getContextPath()+"/view/raceList"%>" class="cancel">返回</a>
                     </div>
                 </fieldset>
                 </div>

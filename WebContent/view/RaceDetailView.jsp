@@ -47,8 +47,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 %>
              <p><span class="title">视频名称：</span>
              <span><%=name %></span> </p>
+             <p><span class="title">视频时长：</span>
+             <span><%=duration %>s</span> </p>
              <p style="margin-top:10px">
-                 <EMBED src="<%=basePath %>upload/<%=content %>" autostart=true width="600" height="400"></EMBED>  
+             <section id="player">
+				  <video id="media" width="320" height="240" controls> 
+				    <source src="<%=basePath %>upload/<%=content %>">
+				  </video> 
+				</section>
+                <!--  <EMBED src="<%=basePath %>upload/<%=content %>" autostart=true width=320" height="240"></EMBED>  --> 
              </p>
              <div class="bottom">
                  <div class="edit">

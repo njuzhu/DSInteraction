@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         %>
                             <p><span><%=answer.getContent() %></span></p>
                             <% if(answer.getUpload() != null){ %>
-                               <p><img src="<%=basePath %>upload/<%=answer.getUpload() %>" style="width:600px;height:350px;margin-left:30px;"></p> 
+                               <p><img src="<%=basePath %>upload/<%=answer.getUpload() %>" style="width:150px;height:150px;margin-left:30px;"></p> 
                             <%} %>
                         <%} %>
                             <% List<Answer> answers2 = (List<Answer>)session.getAttribute("answers");

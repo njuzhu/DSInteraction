@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input type="hidden" name="answer<%=choice %>.id" value="<%=answer_id %>">
                         <div class="each-answer">
                             <input type="text" name="answer<%=choice %>.content" readonly="true" value="<%=answer.getContent().substring(0,2) %>" class="choice"/>
-                            <textarea style="width: 507px;height:60px" name="answer<%=choice %>.content" required="required"><%=answer.getContent().substring(2) %></textarea>
+                            <textarea style="width: 507px;height:60px" name="answer<%=choice %>.content"><%=answer.getContent().substring(2) %></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answer<%=choice %>" 
                                 <%if(answer.getIsRight() == 1){ %>checked <%} %>>正确答案
@@ -154,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <legend>答案</legend>
                         <div class="each-answer">
                             <input type="text" name="answerA.content" readonly="true" value="A：" class="choice"/>
-                            <textarea style="width: 507px;height:60px" name="answerA.content" required="required"></textarea>
+                            <textarea style="width: 507px;height:60px" name="answerA.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerA" checked>正确答案
                             </div>
@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="each-answer">
                             <input type="text" name="answerB.content" readonly="true" value="B：" class="choice"/>
-                            <textarea style="width: 507px;height:60px" name="answerB.content" required="required"></textarea>
+                            <textarea style="width: 507px;height:60px" name="answerB.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerB">正确答案
                             </div>
@@ -186,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="each-answer">
                             <input type="text" name="answerC.content" readonly="true" value="C：" class="choice"/>
-                            <textarea style="width: 507px;height:60px" name="answerC.content" required="required"></textarea>
+                            <textarea style="width: 507px;height:60px" name="answerC.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerC">正确答案
                             </div>
@@ -202,7 +202,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="each-answer">
                             <input type="text" name="answerD.content" readonly="true" value="D：" class="choice"/>
-                            <textarea style="width: 507px;height:60px" name="answerD.content" required="required"></textarea>
+                            <textarea style="width: 507px;height:60px" name="answerD.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerD">正确答案
                             </div>
@@ -220,6 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="save-cancel">
                     <input type="submit" value="保存" class="my-button">
                     <input type="reset" value="重置" class="my-button">
+                    <a href="<%=request.getContextPath()+"/view/questionList"%>" class="cancel">返回</a>
                 </div>
                 </form>
                 <%} %>
