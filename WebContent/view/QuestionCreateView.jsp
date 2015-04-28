@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <fieldset style="margin-top:30px">
                     <legend>答案</legend>
                         <div class="each-answer">
-                            <input type="text" name="answerA.content" readonly="true" value="A：" class="choice"/>
+                            <input type="text" name="answerA.content" readonly="true" value="A:" class="choice"/>
                             <textarea style="width: 507px;height:60px" name="answerA.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerA" checked>正确答案
@@ -169,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                         <div class="each-answer">
-                            <input type="text" name="answerB.content" readonly="true" value="B：" class="choice"/>
+                            <input type="text" name="answerB.content" readonly="true" value="B:" class="choice"/>
                             <textarea style="width: 507px;height:60px" name="answerB.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerB">正确答案
@@ -185,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                         <div class="each-answer">
-                            <input type="text" name="answerC.content" readonly="true" value="C：" class="choice"/>
+                            <input type="text" name="answerC.content" readonly="true" value="C:" class="choice"/>
                             <textarea style="width: 507px;height:60px" name="answerC.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerC">正确答案
@@ -201,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                         </div>
                         <div class="each-answer">
-                            <input type="text" name="answerD.content" readonly="true" value="D：" class="choice"/>
+                            <input type="text" name="answerD.content" readonly="true" value="D:" class="choice"/>
                             <textarea style="width: 507px;height:60px" name="answerD.content"></textarea>
                             <div class="right-ans">
                                 <input type="radio" name="radio" value="answerD">正确答案

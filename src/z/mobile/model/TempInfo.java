@@ -8,6 +8,12 @@ public class TempInfo implements Comparable<TempInfo> {
 	private String startTime;
 	private int score;
 	
+	public TempInfo(int uid,int score) {
+		super();
+		this.uid = uid;
+		this.score = score;
+	}
+	
 	public TempInfo(int uid, String cinema, String hall, String seat,
 			String startTime, int score) {
 		super();

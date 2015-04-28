@@ -84,7 +84,7 @@ public class PlayChoiceAction extends BaseAction{
 		//由二维码获得的数据，暂时为假数据
 		cinemaName = "dahua";
 		hallName = "one";
-		startTime = "2015-03-16 08:00:00";
+		startTime = "2015-04-27 08:00:00";
 		
 		Cinema cinema = cinemaService.searchCinema(cinemaName);
 		List<CinemaHall> halls = cinemaHallService.searchCinemaHall(cinema.getId());

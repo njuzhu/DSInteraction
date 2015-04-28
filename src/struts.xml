@@ -50,7 +50,7 @@
 		</action>
 
 		<action name="loginPro" class="LoginAction">
-			<result name="exist">/view/RewardListView.jsp</result>
+			<result name="exist">/view/QuestionListView.jsp</result>
 		    <result name="error">/view/login.jsp?error=1</result>
 		</action>
 		<action name="questionList" class="QuestionListAction">
@@ -120,6 +120,9 @@
 			<result type="json"></result>
 		</action>
 		<action name="rank" class = "z.mobile.action.RankingAction" method="rank">
+			<result type="json"></result>
+		</action>
+		<action name="questionRank" class = "z.mobile.action.QuestionRankingAction" method="questionRank">
 			<result type="json"></result>
 		</action>
 	</package>

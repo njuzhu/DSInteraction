@@ -327,8 +327,8 @@
 			startTimer();
 		}else{
 			//已显示完最后一题，显示最终排名，目前选择题没有设置排名
-			//loadRankList();
-			loadQuestionRankList();
+			loadRankList();
+			//loadQuestionRankList();
 		}
 
 	}
